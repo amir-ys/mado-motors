@@ -1,8 +1,11 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\V1\Admin\CategoryController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');
+Route::prefix('v1')->group(function () {
+    # categories
+    Route::apiResource('categories', CategoryController::class)
+        ->names('api.v1.admin.categories');
+
+});
