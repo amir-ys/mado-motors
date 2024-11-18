@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Api\V1\Admin;
 
 use App\Contracts\CategoryRepositoryInterface;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCategoryRequest;
-use App\Http\Requests\UpdateCategoryRequest;
+use App\Http\Requests\Category\StoreCategoryRequest;
+use App\Http\Requests\Category\UpdateCategoryRequest;
 use App\Http\Resources\CategoryResource;
-use App\Models\Category;
 use App\Utilities\ApiResponse;
 use Illuminate\Http\JsonResponse;
 
@@ -26,7 +25,7 @@ class CategoryController extends Controller
     {
         $categories = $this->categoryRepository->with(['parent', 'children'])->paginate();
 
-       return ApiResponse::success(
+        return ApiResponse::success(
             CategoryResource::collection($categories)
         );
     }
@@ -48,24 +47,36 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show($id): JsonResponse
     {
-        //
+        $category = $this->categoryRepository->with(['parent', 'children'])->find($id);
+
+        return ApiResponse::success(new CategoryResource($category));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(UpdateCategoryRequest $request, $id): JsonResponse
     {
-        //
+        $data = $request->validated();
+        $category = $this->categoryRepository->update($data, $id);
+
+        return ApiResponse::success(
+            new CategoryResource($category),
+            'category updated successfully'
+        );
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+        $this->categoryRepository->delete($id);
+
+        return ApiResponse::success(
+            'category deleted successfully'
+        );
     }
 }
