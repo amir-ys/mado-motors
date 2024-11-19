@@ -10,13 +10,11 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('agents', function (Blueprint $table) {
+        Schema::create('related_products', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 190);
-            $table->string('code', 50);
-            $table->foreignId('user_id');
-            $table->foreignId('address_id');
-            $table->softDeletes();
+            $table->foreignId('product_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('related_product_id')->constrained()->cascadeOnDelete();
+            $table->unique(['product_id', 'related_product_id']);
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('agents');
+        Schema::dropIfExists('related_products');
     }
 };

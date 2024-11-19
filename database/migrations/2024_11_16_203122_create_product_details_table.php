@@ -23,6 +23,7 @@ return new class extends Migration {
                 ->cascadeOnDelete();
             $table->string('chassis_number');
             $table->string('engine_number');
+            $table->string('plaque number')->nullable();
             $table->date('year_of_production');
             $table->timestamps();
         });
