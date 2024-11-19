@@ -3,14 +3,15 @@
 namespace App\Contracts;
 
 use Closure;
+use Illuminate\Support\Collection;
 use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * @method $this setPresenter($presenter)
  * @method array getFieldsSearchable()
- * @method $this scopeQuery(\Closure $scope)
- * @method \Illuminate\Support\Collection|array lists(string $column, string|null $key = null)
- * @method \Illuminate\Support\Collection|array pluck(string $column, string|null $key = null)
+ * @method $this scopeQuery(Closure $scope)
+ * @method Collection|array lists(string $column, string|null $key = null)
+ * @method Collection|array pluck(string $column, string|null $key = null)
  * @method mixed sync($id, $relation, $attributes, bool $detaching = true)
  * @method mixed syncWithoutDetaching($id, $relation, $attributes)
  * @method mixed all(array $columns = ['*'])

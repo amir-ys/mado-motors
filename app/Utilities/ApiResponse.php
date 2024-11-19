@@ -8,6 +8,20 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ApiResponse
 {
+    public static function created(mixed $data, string $message = ''): JsonResponse
+    {
+        return static::success($data, $message, Response::HTTP_CREATED);
+    }
+
+    public static function success(
+        mixed  $data,
+        string $message = '',
+        int    $statusCode = Response::HTTP_OK
+    ): JsonResponse
+    {
+        return static::json($data, $message, $statusCode);
+    }
+
     public static function json(
         mixed  $data = null,
         string $message = '',
@@ -30,14 +44,16 @@ class ApiResponse
         return new JsonResponse($payload, $statusCode);
     }
 
-    public static function success(
-        mixed  $data,
-        string $message = '',
-        int    $statusCode = Response::HTTP_OK
-    ): JsonResponse
+    public static function noContent(string $message = ''): JsonResponse
     {
-        return static::json($data, $message, $statusCode);
+        return static::json([], $message, Response::HTTP_NO_CONTENT);
     }
+
+    public static function badRequest(string $message = ''): JsonResponse
+    {
+        return static::error($message, Response::HTTP_BAD_REQUEST);
+    }
+
     public static function error(
         string $message = '',
         int    $statusCode = Response::HTTP_INTERNAL_SERVER_ERROR
@@ -48,21 +64,6 @@ class ApiResponse
             $message ?: Response::$statusTexts[$statusCode],
             $statusCode
         );
-    }
-
-    public static function created(mixed $data, string $message = ''): JsonResponse
-    {
-        return static::success($data, $message, Response::HTTP_CREATED);
-    }
-
-    public static function noContent(string $message = ''): JsonResponse
-    {
-        return static::json([], $message, Response::HTTP_NO_CONTENT);
-    }
-
-    public static function badRequest(string $message = ''): JsonResponse
-    {
-        return static::error($message, Response::HTTP_BAD_REQUEST);
     }
 
     public static function unauthorized(string $message = ''): JsonResponse
