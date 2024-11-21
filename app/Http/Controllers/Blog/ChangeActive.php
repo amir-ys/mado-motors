@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Http\Controllers\Blog;
+
+use App\Contracts\BlogRepositoryInterface;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\BlogResource;
+use App\Models\Blog;
+
+class ChangeActive extends Controller
+{
+    public function __invoke( Blog $blog ): BlogResource
+    {
+        return BlogResource::make(
+            app( BlogRepositoryInterface::class )->changeActive( $blog->id )
+        );
+    }
+
+}

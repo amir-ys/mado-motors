@@ -9,3 +9,9 @@ Route::prefix('v1')->group(function () {
         ->names('api.v1.admin.categories');
 
 });
+
+
+Route::namespace( 'User' )->group( function () {
+    Route::handler( 'users' );
+    Route::post( 'users/change-role/{user}' , 'ChangeRole' );
+} );
