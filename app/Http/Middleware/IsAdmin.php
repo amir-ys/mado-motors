@@ -16,7 +16,7 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next): mixed
     {
-        if(auth()->check() and auth()->user()->role == "admin"){
+        if (auth()->check() and auth()->user()->role == "admin") {
             return $next($request);
         }
         abort(403);

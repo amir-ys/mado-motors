@@ -10,11 +10,11 @@ use App\Models\Product;
 
 class UpdateProduct extends Controller
 {
-    public function __invoke( Product $product , UpdateProductRequest $updateProductRequest ): ProductResource
+    public function __invoke(Product $product, UpdateProductRequest $updateProductRequest): ProductResource
     {
         return ProductResource::make(
-            app( ProductRepositoryInterface::class )->update(
-                $updateProductRequest->only( [ 'title' , 'summary' , 'category_id' , 'description' ] ),
+            app(ProductRepositoryInterface::class)->update(
+                $updateProductRequest->only(['title', 'summary', 'category_id', 'description']),
                 $product->id
             )
         );

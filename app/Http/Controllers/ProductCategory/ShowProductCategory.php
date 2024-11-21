@@ -9,17 +9,17 @@ use App\Models\ProductCategory;
 
 class ShowProductCategory extends Controller
 {
-    public function __invoke( ProductCategory $productCategory ): ProductCategoryResource
+    public function __invoke(ProductCategory $productCategory): ProductCategoryResource
     {
         return ProductCategoryResource::make(
-            app( ProductCategoryRepositoryInterface::class )->show( $productCategory->id )
+            app(ProductCategoryRepositoryInterface::class)->show($productCategory->id)
         );
     }
 
-    public function show( ProductCategory $productCategory ): ProductCategoryResource
+    public function show(ProductCategory $productCategory): ProductCategoryResource
     {
         return ProductCategoryResource::make(
-            app( ProductCategoryRepositoryInterface::class )->show( $productCategory->id )
+            app(ProductCategoryRepositoryInterface::class)->show($productCategory->id)
         );
     }
 }

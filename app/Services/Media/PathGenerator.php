@@ -13,7 +13,7 @@ class PathGenerator implements BasePathGenerator
      */
     public function getPath(Media $media): string
     {
-        return md5($media->id).'/';
+        return md5($media->id) . '/';
     }
 
     /*
@@ -21,7 +21,7 @@ class PathGenerator implements BasePathGenerator
      */
     public function getPathForConversions(Media $media): string
     {
-        return $this->getPath($media).'conversions/';
+        return $this->getPath($media) . 'conversions/';
     }
 
     /*
@@ -29,7 +29,7 @@ class PathGenerator implements BasePathGenerator
      */
     public function getPathForResponsiveImages(Media $media): string
     {
-        return $this->getPath($media).'responsive-images/';
+        return $this->getPath($media) . 'responsive-images/';
     }
 
 }

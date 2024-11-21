@@ -24,14 +24,14 @@ class CreateProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string' ,
-            'title_en' => 'required|string' ,
-            'summary' => 'nullable|string' ,
-            'description' => 'nullable|string' ,
-            'category_id' => 'nullable|numeric|exists:product_categories,id' ,
+            'title' => 'required|string',
+            'title_en' => 'required|string',
+            'summary' => 'nullable|string',
+            'description' => 'nullable|string',
+            'category_id' => 'nullable|numeric|exists:product_categories,id',
 
-            'variations' => 'nullable|array' ,
-            'variations.*.key' => 'nullable|string' ,
+            'variations' => 'nullable|array',
+            'variations.*.key' => 'nullable|string',
             'variations.*.value' => 'nullable|string'
         ];
     }

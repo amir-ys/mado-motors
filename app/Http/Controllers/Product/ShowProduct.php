@@ -9,17 +9,17 @@ use App\Models\Product;
 
 class ShowProduct extends Controller
 {
-    public function __invoke( Product $product ): ProductResource
+    public function __invoke(Product $product): ProductResource
     {
         return ProductResource::make(
-            app( ProductRepositoryInterface::class )->show( $product->id )
+            app(ProductRepositoryInterface::class)->show($product->id)
         );
     }
 
-    public function show( Product $product ): ProductResource
+    public function show(Product $product): ProductResource
     {
         return ProductResource::make(
-            app( ProductRepositoryInterface::class )->showOnline( $product->id )
+            app(ProductRepositoryInterface::class)->showOnline($product->id)
         );
     }
 }

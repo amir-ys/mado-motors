@@ -1,27 +1,27 @@
 <?php
 
-    namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\User;
 
-    use App\Contracts\UserRepositoryInterface;
-    use App\Http\Controllers\Controller;
-    use App\Http\Resources\UserResource;
-    use App\Models\User;
+use App\Contracts\UserRepositoryInterface;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
+use App\Models\User;
 
-    class ShowUser extends Controller
+class ShowUser extends Controller
+{
+
+    public function __invoke(User $user): UserResource
     {
-
-        public function __invoke( User $user ): UserResource
-        {
-            return UserResource::make(
-                app(UserRepositoryInterface::class)->show($user->id)
-            );
-        }
-
-        public function ShowMyInfo(): UserResource
-        {
-            return UserResource::make(
-                app(UserRepositoryInterface::class)->showMyInfo()
-            );
-        }
-
+        return UserResource::make(
+            app(UserRepositoryInterface::class)->show($user->id)
+        );
     }
+
+    public function ShowMyInfo(): UserResource
+    {
+        return UserResource::make(
+            app(UserRepositoryInterface::class)->showMyInfo()
+        );
+    }
+
+}

@@ -4,32 +4,32 @@ namespace App\Services;
 
 class Responser
 {
-    public static function success( $content = null , $title = null , $data = [] ): array
+    public static function success($content = null, $title = null, $data = []): array
     {
-        $content = $content ? : trans( 'messages.success_content' );
-        $title = $title ? : trans( 'messages.success_title' );
+        $content = $content ?: trans('messages.success_content');
+        $title = $title ?: trans('messages.success_title');
         return [
-            'data' => $data ,
+            'data' => $data,
             'message' => [
-                'title' => $title ,
+                'title' => $title,
                 'content' => $content
             ]
         ];
     }
 
-    public static function error( array $errors = [] , $data = [] ): array
+    public static function error(array $errors = [], $data = []): array
     {
-        $errors = ! empty( $errors ) ? $errors : [ trans( 'messages.error_title' ) => trans( 'messages.error_content' ) ];
+        $errors = !empty($errors) ? $errors : [trans('messages.error_title') => trans('messages.error_content')];
         return [
-            'data' => $data ,
+            'data' => $data,
             'errors' => $errors
         ];
     }
 
-    public static function data( $data ): array
+    public static function data($data): array
     {
         return [
-            'data' => $data ,
+            'data' => $data,
         ];
     }
 }

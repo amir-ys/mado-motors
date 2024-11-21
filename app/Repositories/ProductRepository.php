@@ -52,7 +52,7 @@ class ProductRepository implements ProductRepositoryInterface
                 $q->with("ancestors");
             },
             "variations",
-            "main_image" ,
+            "main_image",
             "media"
         ]);
         return $product;
@@ -75,7 +75,7 @@ class ProductRepository implements ProductRepositoryInterface
                 "main_image"
             ])
             ->get();
-        if ( ! $similarProducts->isEmpty()) {
+        if (!$similarProducts->isEmpty()) {
             $similarProductsCount = $similarProducts->count();
             $similarSelectedProductsCount = min($similarProductsCount, 8);
             return $similarProducts->random($similarSelectedProductsCount);
@@ -92,7 +92,7 @@ class ProductRepository implements ProductRepositoryInterface
                 $q->with("ancestors");
             },
             "variations",
-            "main_image" ,
+            "main_image",
             "media"
         ]);
         return $product;
@@ -105,7 +105,7 @@ class ProductRepository implements ProductRepositoryInterface
         MediaHelper::storeMediaFor($product);
 
         if (Arr::has($data, "variations")) {
-            foreach ($data[ "variations" ] as $variation) {
+            foreach ($data["variations"] as $variation) {
                 $product->variations()->create($variation);
             }
         }
@@ -128,7 +128,7 @@ class ProductRepository implements ProductRepositoryInterface
         MediaHelper::storeMediaFor($product);
 
         if (Arr::has($data, "variations")) {
-            foreach ($data[ "variations" ] as $variation) {
+            foreach ($data["variations"] as $variation) {
                 ProductVariation::query()->create($variation);
             }
         }

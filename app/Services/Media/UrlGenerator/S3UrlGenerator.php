@@ -5,22 +5,22 @@ namespace App\Services\Media\UrlGenerator;
 use DateTimeInterface;
 use Spatie\MediaLibrary\Support\UrlGenerator\DefaultUrlGenerator;
 
- class S3UrlGenerator extends DefaultUrlGenerator
+class S3UrlGenerator extends DefaultUrlGenerator
 {
     /**
      * Get the url for the profile of a media item.
      *
      * @return string
      */
-    public function getUrl() : string
+    public function getUrl(): string
     {
-        return config('media-library.s3.domain').'/'.$this->getPathRelativeToRoot();
+        return config('media-library.s3.domain') . '/' . $this->getPathRelativeToRoot();
     }
 
     /**
      * @param DateTimeInterface $expiration
      *
-     * @param array              $options
+     * @param array $options
      *
      * @return string
      */
@@ -47,6 +47,6 @@ use Spatie\MediaLibrary\Support\UrlGenerator\DefaultUrlGenerator;
      */
     public function getResponsiveImagesDirectoryUrl(): string
     {
-        return config('media-library.s3.domain').'/'.$this->pathGenerator->getPathForResponsiveImages($this->media);
+        return config('media-library.s3.domain') . '/' . $this->pathGenerator->getPathForResponsiveImages($this->media);
     }
 }

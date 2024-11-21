@@ -98,7 +98,7 @@ class SmsNotification
 
     public function sendWithTemplate($template): void
     {
-        if ( ! is_null($template)) {
+        if (!is_null($template)) {
             $this->send($template->template, $template->operator);
         }
     }

@@ -4,7 +4,7 @@ namespace App\Contracts;
 
 interface ProductCategoryRepositoryInterface
 {
-    public function destroy( int $productCategoryId );
+    public function destroy(int $productCategoryId);
 
     public function all();
 
@@ -12,11 +12,11 @@ interface ProductCategoryRepositoryInterface
 
     public function indexOnline();
 
-    public function show( int $productCategoryId );
+    public function show(int $productCategoryId);
 
-    public function showOnline( int $productCategoryId );
+    public function showOnline(int $productCategoryId);
 
-    public function store( array $data );
+    public function store(array $data);
 
-    public function update( array $data , int $productCategoryId );
+    public function update(array $data, int $productCategoryId);
 }

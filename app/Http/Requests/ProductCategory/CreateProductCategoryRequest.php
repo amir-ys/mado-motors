@@ -24,9 +24,9 @@ class CreateProductCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string' ,
-            'description' => 'nullable|string' ,
-            'parent.connect' => 'nullable|numeric|exists:product_categories,id' ,
+            'title' => 'required|string',
+            'description' => 'nullable|string',
+            'parent.connect' => 'nullable|numeric|exists:product_categories,id',
         ];
     }
 }

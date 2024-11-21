@@ -12,9 +12,9 @@ class FtpUrlGenerator extends DefaultUrlGenerator
      *
      * @return string
      */
-    public function getUrl() : string
+    public function getUrl(): string
     {
-        return config('media-library.wm-cdn').'/'.$this->getPathRelativeToRoot();
+        return config('media-library.wm-cdn') . '/' . $this->getPathRelativeToRoot();
     }
 
     /**
@@ -35,7 +35,7 @@ class FtpUrlGenerator extends DefaultUrlGenerator
      * @return string
      *
      */
-    public function getPath():string
+    public function getPath(): string
     {
         return $this->getPathRelativeToRoot();
     }
@@ -47,6 +47,6 @@ class FtpUrlGenerator extends DefaultUrlGenerator
      */
     public function getResponsiveImagesDirectoryUrl(): string
     {
-        return config('media-library.wm-cdn').'/'.$this->pathGenerator->getPathForResponsiveImages($this->media);
+        return config('media-library.wm-cdn') . '/' . $this->pathGenerator->getPathForResponsiveImages($this->media);
     }
 }

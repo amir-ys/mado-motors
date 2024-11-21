@@ -1,6 +1,6 @@
 <?php
 
-    namespace App\Services\Notification\Batch;
+namespace App\Services\Notification\Batch;
 
 use App\Models\SmsBatch;
 use App\Services\Notification\Events\SmsSent;
@@ -39,8 +39,8 @@ class PeerToPeer
             }
 
             try {
-                $this->client = new SoapClient( $this->config[ 'url' ] );
-            } catch ( \SoapFault $e ) {
+                $this->client = new SoapClient($this->config['url']);
+            } catch (\SoapFault $e) {
                 dd($e->getMessage());
             }
         }
@@ -48,7 +48,7 @@ class PeerToPeer
 
     private function isValidCost(): bool
     {
-        if ( $this->price > -50000.00) {
+        if ($this->price > -50000.00) {
             return true;
         } else {
             return false;

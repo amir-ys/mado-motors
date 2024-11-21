@@ -9,11 +9,11 @@ use App\Http\Resources\ProductResource;
 
 class StoreProduct extends Controller
 {
-    public function __invoke( CreateProductRequest $createProductRequest ): ProductResource
+    public function __invoke(CreateProductRequest $createProductRequest): ProductResource
     {
         return ProductResource::make(
-            app( ProductRepositoryInterface::class )->store(
-                $createProductRequest->only( [ 'title' , 'title_en' , 'summary' , 'category_id' , 'description' , 'variations' ] )
+            app(ProductRepositoryInterface::class)->store(
+                $createProductRequest->only(['title', 'title_en', 'summary', 'category_id', 'description', 'variations'])
             )
         );
     }

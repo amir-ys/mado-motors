@@ -1,6 +1,6 @@
 <?php
 
-    namespace App\Services\Searchable;
+namespace App\Services\Searchable;
 
 use Illuminate\Database\Eloquent\Builder;
 use InvalidArgumentException;
@@ -26,6 +26,7 @@ class Constraint
     protected $operator;
     protected $value;
     protected $is_negation;
+
     /**
      * @return string
      */
@@ -33,6 +34,7 @@ class Constraint
     {
         return $this->operator;
     }
+
     /**
      * @return string
      */
@@ -40,6 +42,7 @@ class Constraint
     {
         return $this->value;
     }
+
     /**
      * @return boolean
      */
@@ -47,6 +50,7 @@ class Constraint
     {
         return $this->is_negation;
     }
+
     /**
      * Creates constraint object for given filter.
      *
@@ -61,6 +65,7 @@ class Constraint
         list($operator, $value) = static::parseOperatorAndValue($value, $is_negation);
         return new static($operator, $value, $is_negation);
     }
+
     /**
      * Applies constraint to query.
      *
@@ -85,6 +90,7 @@ class Constraint
             $this->doApply($builder, $field, $mode);
         }
     }
+
     /**
      * Check if given field contains relation name
      *
@@ -95,6 +101,7 @@ class Constraint
     {
         return strpos($field, ':') !== false;
     }
+
     /**
      * Splits given field name containing relation name into relation name and field name
      * @param string $field field name
@@ -106,6 +113,7 @@ class Constraint
         $partsCount = count($parts);
         return [implode('.', array_slice($parts, 0, $partsCount - 1)), $parts[$partsCount - 1]];
     }
+
     /**
      * Applies non-relation constraint to query.
      *
@@ -138,6 +146,7 @@ class Constraint
             $builder->$method($field, $this->operator, $this->value);
         }
     }
+
     /**
      * @param string $operator operator
      * @param string $value value
@@ -149,6 +158,7 @@ class Constraint
         $this->value = $value;
         $this->is_negation = $is_negation;
     }
+
     /**
      *  Cleans value and converts to array if needed.
      *
@@ -160,6 +170,7 @@ class Constraint
     {
         return trim($value, ", \t\n\r\0\x0B");
     }
+
     /**
      * Check if query constraint is negated.
      *
@@ -175,6 +186,7 @@ class Constraint
         }
         return false;
     }
+
     /**
      * Parse query parameter and get operator and value.
      *
@@ -204,6 +216,7 @@ class Constraint
         }
         throw new InvalidArgumentException(sprintf('Unable to parse operator or value from "%s"', $value));
     }
+
     /**
      * @param string $value
      * @param bool $is_negation
@@ -233,6 +246,7 @@ class Constraint
         }
         return false;
     }
+
     /**
      * @param string $value
      * @param bool $is_negation
@@ -247,6 +261,7 @@ class Constraint
         }
         return false;
     }
+
     /**
      * @param string $value
      * @param bool $is_negation
@@ -261,6 +276,7 @@ class Constraint
         }
         return false;
     }
+
     /**
      * @param string $value
      * @param bool $is_negation
@@ -274,6 +290,7 @@ class Constraint
         }
         return false;
     }
+
     /**
      * @param string $value
      * @param bool $is_negation

@@ -1,14 +1,14 @@
 <?php
 
-    namespace App\Services\Searchable;
+namespace App\Services\Searchable;
 
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
-use Illuminate\Support\Arr;
-use RuntimeException;
 use InvalidArgumentException;
+use RuntimeException;
 
 
 trait SearchableTrait
@@ -17,11 +17,12 @@ trait SearchableTrait
     {
         return 'mode';
     }
+
     /**
      * Applies filters.
      *
      * @param Builder $builder query builder
-     * @param array   $query   query parameters to use for search - Request::all() is used by default
+     * @param array $query query parameters to use for search - Request::all() is used by default
      */
     public function scopeFiltered(Builder $builder, array $query = [])
     {
@@ -36,10 +37,11 @@ trait SearchableTrait
         $constraints = $this->getConstraints($builder, $query);
         $this->applyConstraints($builder, $constraints, $mode);
     }
+
     /**
      * Map query parameters based on fields that specified in map array
      *
-     * @param array   $query   query parameters
+     * @param array $query query parameters
      *
      * @return array
      */
@@ -55,11 +57,12 @@ trait SearchableTrait
         }
         return $query;
     }
+
     /**
      * Builds search constraints based on model's searchable fields and query parameters.
      *
      * @param Builder $builder query builder
-     * @param array   $query   query parameters
+     * @param array $query query parameters
      *
      * @return array
      */
@@ -73,39 +76,43 @@ trait SearchableTrait
         }
         return $constraints;
     }
+
     /**
      * Makes sure field names contain only allowed characters
      *
      * @param array $query
      */
-    protected function validateFieldNames(array $query) {
+    protected function validateFieldNames(array $query)
+    {
         foreach ($query as $field => $values) {
             if (!preg_match('/^!?[a-zA-Z0-9\-_:\.]+$/', $field)) {
                 throw new InvalidArgumentException(sprintf('Incorrect field name: %s', $field));
             }
         }
     }
+
     /**
      * Check if field is searchable for given model.
      *
      * @param Builder $builder query builder
-     * @param string  $field   field name
+     * @param string $field field name
      *
      * @return bool
      */
     protected function isFieldSearchable(Builder $builder, $field)
     {
         $searchable = $this->_getSearchableAttributes($builder);
-        $notSearchable =  $this->_getNotSearchableAttributes($builder);
+        $notSearchable = $this->_getNotSearchableAttributes($builder);
         $field = preg_replace('#^!#', '', $field);
         return !in_array($field, $notSearchable) && !in_array('*', $notSearchable) && (in_array($field, $searchable) || in_array('*', $searchable));
     }
+
     /**
      * Applies constraints to query, allowing model to overwrite any of them.
      *
-     * @param Builder      $builder     query builder
+     * @param Builder $builder query builder
      * @param Constraint[] $constraints constraints
-     * @param string       $mode        determines how constraints are applied ("or" or "and")
+     * @param string $mode determines how constraints are applied ("or" or "and")
      */
     protected function applyConstraints(Builder $builder, array $constraints, $mode = Constraint::MODE_AND)
     {
@@ -119,11 +126,12 @@ trait SearchableTrait
             }
         }
     }
+
     /**
      * Calls constraint interceptor on model.
      *
-     * @param Builder    $builder    query builder
-     * @param string     $field      field on which constraint is applied
+     * @param Builder $builder query builder
+     * @param string $field field on which constraint is applied
      * @param Constraint $constraint constraint
      *
      * @return bool true if constraint was intercepted by model's method
@@ -139,6 +147,7 @@ trait SearchableTrait
         }
         return false;
     }
+
     /**
      * Build Constraint objects from given filter values
      *
@@ -154,13 +163,14 @@ trait SearchableTrait
             return Constraint::make($values);
         }
     }
+
     /**
      * Apply a single constraint - either directly or using model's interceptor
      *
-     * @param Builder    $builder    query builder
-     * @param string     $field      field name
+     * @param Builder $builder query builder
+     * @param string $field field name
      * @param Constraint $constraint constraint
-     * @param string     $mode       determines how constraint is applied ("or" or "and")
+     * @param string $mode determines how constraint is applied ("or" or "and")
      */
     protected function applyConstraint(Builder $builder, $field, $constraint, $mode = Constraint::MODE_AND)
     {
@@ -169,6 +179,7 @@ trait SearchableTrait
             $constraint->apply($builder, $field, $mode);
         }
     }
+
     /**
      * Determines how constraints are applied ("or" or "and")
      *
@@ -180,11 +191,13 @@ trait SearchableTrait
     {
         return Arr::get($query, $this->getQueryModeParameterName(), Constraint::MODE_AND);
     }
+
     /**
      * @param Builder $builder
      * @return array list of searchable attributes
      */
-    protected function _getSearchableAttributes(Builder $builder) {
+    protected function _getSearchableAttributes(Builder $builder)
+    {
         if (method_exists($builder->getModel(), 'getSearchableAttributes')) {
             return $builder->getModel()->getSearchableAttributes();
         }
@@ -193,13 +206,15 @@ trait SearchableTrait
         }
         throw new RuntimeException(sprintf('Model %s must either implement getSearchableAttributes() or have $searchable property set', get_class($builder->getModel())));
     }
+
     /**
      * Removes parameters that have special meaning to the trait or related sortable/withable traits
      *
      * @param array $query query
      * @return array query without special parameters that model should not be searched on
      */
-    protected function filterNonSearchableParameters(array $query) {
+    protected function filterNonSearchableParameters(array $query)
+    {
         $nonSearchableParameterNames = [$this->getQueryModeParameterName()];
         if (property_exists($this, 'withParameterName')) {
             $nonSearchableParameterNames[] = $this->withParameterName;
@@ -209,6 +224,7 @@ trait SearchableTrait
         }
         return Arr::except($query, $nonSearchableParameterNames);
     }
+
     /**
      * @param Builder $builder
      * @return array|mixed

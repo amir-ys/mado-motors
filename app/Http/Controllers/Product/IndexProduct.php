@@ -13,21 +13,21 @@ class IndexProduct extends Controller
     public function __invoke(): AnonymousResourceCollection
     {
         return ProductResource::collection(
-            app( ProductRepositoryInterface::class )->index()
+            app(ProductRepositoryInterface::class)->index()
         );
     }
 
     public function index(): AnonymousResourceCollection
     {
         return ProductResource::collection(
-            app( ProductRepositoryInterface::class )->indexOnline()
+            app(ProductRepositoryInterface::class)->indexOnline()
         );
     }
 
-    public function similar( Product $product ): AnonymousResourceCollection
+    public function similar(Product $product): AnonymousResourceCollection
     {
         return ProductResource::collection(
-            app( ProductRepositoryInterface::class )->similarProducts( $product->id )
+            app(ProductRepositoryInterface::class)->similarProducts($product->id)
         );
     }
 }

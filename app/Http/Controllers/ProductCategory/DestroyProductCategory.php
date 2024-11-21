@@ -10,9 +10,9 @@ use Illuminate\Http\JsonResponse;
 
 class DestroyProductCategory extends Controller
 {
-    public function __invoke( ProductCategory $productCategory ): JsonResponse
+    public function __invoke(ProductCategory $productCategory): JsonResponse
     {
-        app( ProductCategoryRepositoryInterface::class )->destroy( $productCategory->id );
-        return response()->json( Responser::success() );
+        app(ProductCategoryRepositoryInterface::class)->destroy($productCategory->id);
+        return response()->json(Responser::success());
     }
 }

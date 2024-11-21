@@ -15,9 +15,9 @@ class StoreMedia extends Controller
     {
         $nameSpace = "App\\Models\\" . ucfirst(Str::camel($request->input('model_name')));
 
-        if (! $nameSpace::isValidMediaCollection($request->input('collection_name'))) {
+        if (!$nameSpace::isValidMediaCollection($request->input('collection_name'))) {
             return response()->json(
-                Responser::error( [
+                Responser::error([
                     "مشکل در دسته بندی" => 'دسته بندی ارائه شده تعریف نشده است.'
                 ]),
                 422
@@ -30,7 +30,7 @@ class StoreMedia extends Controller
         ]);
         if ($request->hasFile('file')) {
             $media = $fakeModel->addMedia($request->file('file'));
-        } elseif($request->has('url')) {
+        } elseif ($request->has('url')) {
             $media = $fakeModel->addMediaFromUrl($request->input('url'));
         } else {
             return Responser::error();
