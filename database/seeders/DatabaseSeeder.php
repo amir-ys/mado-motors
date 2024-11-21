@@ -12,8 +12,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(
-            FactorySeeder::class
-        );
+        $this->call([
+            CitySeeder::class,
+            TableSeeder::class
+        ]);
     }
 }
