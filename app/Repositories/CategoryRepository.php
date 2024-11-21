@@ -3,12 +3,12 @@
 namespace App\Repositories;
 
 use App\Contracts\CategoryRepositoryInterface;
-use App\Models\Category;
+use App\Models\ProductCategory;
 
 class CategoryRepository extends BaseRepository implements CategoryRepositoryInterface
 {
     public function model(): string
     {
-        return Category::class;
+        return ProductCategory::class;
     }
 }

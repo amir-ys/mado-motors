@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Category;
+use App\Models\ProductCategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,7 +20,7 @@ class ProductFactory extends Factory
         return [
             'title_fa' => $this->faker->word,
             'title_en' => $this->faker->word,
-            'category_id' => Category::factory(),
+            'category_id' => ProductCategory::factory(),
             'description' => $this->faker->paragraph,
             'spod_id' => $this->faker->optional()->uuid,
             'original_price' => $this->faker->randomNumber(5, true),
