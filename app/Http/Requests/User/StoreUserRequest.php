@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\User;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -31,13 +32,21 @@ class StoreUserRequest extends FormRequest
                 'required',
                 'string',
                 'regex:/^09[0-9]{9}$/',
-                Rule::unique('users', 'mobile')->whereNull('deleted_at')
+                Rule::unique('users', 'mobile')
+                    ->whereNull('deleted_at')
+            ],
+            'national_code' => [
+                'required',
+                'digits:10',
+                Rule::unique(User::getTableName(), 'national_code')
             ],
             #todo add national code validator
-            'national_code' => 'required|digits:10',
             'phone' => 'nullable',
-            'email' => 'nullable|email',
-            'password' => 'required|confirmed|min:6',
+            'email' => [
+                'nullable' ,
+                'email' ,
+                Rule::unique(User::getTableName())
+            ],            'password' => 'required|confirmed|min:6',
         ];
     }
 }

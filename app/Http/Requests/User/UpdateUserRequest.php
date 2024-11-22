@@ -36,15 +36,17 @@ class UpdateUserRequest extends FormRequest
             ],
             #todo add national code validator
             'national_code' => [
-                'required' ,
-                'digits:10' ,
-                Rule::unique(User::getTableName())->ignore($this->route()->parameter('user'))
-                ],
+                'required',
+                'digits:10',
+                Rule::unique(User::getTableName(), 'national_code')
+                    ->ignore($this->route()->parameter('user'))
+            ],
             'phone' => 'nullable',
             'email' => [
-                'nullable' ,
-                'email' ,
-                Rule::unique(User::getTableName())->ignore($this->route()->parameter('user'))
+                'nullable',
+                'email',
+                Rule::unique(User::getTableName(), 'email')
+                    ->ignore($this->route()->parameter('user'))
             ],
             'password' => 'required|confirmed|min:6',
         ];
