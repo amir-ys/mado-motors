@@ -14,9 +14,10 @@ return new class extends Migration {
             $table->id();
             $table->string('title_fa');
             $table->string('title_en');
-            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('category_id')
+                ->constrained('product_categories')
+                ->cascadeOnDelete();
             $table->longText('description');
-            #todo spod_id ??
             $table->string('spod_id')->nullable();
             #todo price and quantity price
             $table->integer('original_price')->nullable();

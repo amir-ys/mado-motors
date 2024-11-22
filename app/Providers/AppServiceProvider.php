@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Utilities\CustomPaginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
@@ -24,6 +26,11 @@ class AppServiceProvider extends ServiceProvider
             Route::delete($prefix . '/{' . $parameterName . '}', 'Destroy' . $name);
             Route::get($prefix . '/{' . $parameterName . '}', 'Show' . $name);
         });
+
+        $this->app->bind(
+            LengthAwarePaginator::class,
+            CustomPaginator::class
+        );
     }
 
     /**

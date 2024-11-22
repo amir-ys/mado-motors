@@ -2,7 +2,7 @@
 
 namespace App\Contracts;
 
-interface CityRepositoryInterface
+interface CityRepositoryInterface extends BaseRepositoryInterface
 {
     public function index($type);
 

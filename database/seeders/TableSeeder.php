@@ -5,12 +5,12 @@ namespace Database\Seeders;
 use App\Models\Agent;
 use App\Models\Cart;
 use App\Models\CartItem;
-use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Payment;
 use App\Models\Product;
+use App\Models\ProductCategory;
 use App\Models\ProductDetail;
 use App\Models\ProductReview;
 use App\Models\ProductReviewPoint;
@@ -29,7 +29,7 @@ class TableSeeder extends Seeder
     public function run(): void
     {
         User::factory(10)->create();
-        Category::factory(5)->create();
+        ProductCategory::factory(5)->create();
         Product::factory(20)->create();
         UserAddress::factory(10)->create();
         Agent::factory(5)->create();

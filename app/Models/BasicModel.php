@@ -59,7 +59,7 @@ trait BasicModel
         return $fieldName;
     }
 
-    public function getTable()
+    public function getTable(): string
     {
         return static::getTableName();
     }

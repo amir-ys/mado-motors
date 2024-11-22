@@ -2,13 +2,14 @@
 
 namespace App\Providers;
 
-use App\Contracts\CategoryRepositoryInterface;
+use App\Contracts\ProductCategoryRepositoryInterface;
 use App\Repositories\CategoryRepository;
+use App\Repositories\ProductCategoryRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
     public $bindings = [
-        CategoryRepositoryInterface::class => CategoryRepository::class
+        ProductCategoryRepositoryInterface::class => ProductCategoryRepository::class
     ];
 }

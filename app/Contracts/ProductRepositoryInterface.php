@@ -2,7 +2,7 @@
 
 namespace App\Contracts;
 
-interface ProductRepositoryInterface
+interface ProductRepositoryInterface extends BaseRepositoryInterface
 {
     public function destroy(int $productId);
 
@@ -17,6 +17,4 @@ interface ProductRepositoryInterface
     public function showOnline(int $productId);
 
     public function store(array $data);
-
-    public function update(array $data, int $productId);
 }

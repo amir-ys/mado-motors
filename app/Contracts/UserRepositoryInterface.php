@@ -2,7 +2,7 @@
 
 namespace App\Contracts;
 
-interface UserRepositoryInterface
+interface UserRepositoryInterface extends BaseRepositoryInterface
 {
     public function destroy(int $userId);
 
@@ -15,6 +15,4 @@ interface UserRepositoryInterface
     public function showMyInfo();
 
     public function store(array $data);
-
-    public function update(array $data, int $userId);
 }

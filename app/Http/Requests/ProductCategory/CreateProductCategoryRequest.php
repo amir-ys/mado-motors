@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\ProductCategory;
 
+use App\Models\ProductCategory;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CreateProductCategoryRequest extends FormRequest
 {
@@ -24,9 +26,11 @@ class CreateProductCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string',
-            'description' => 'nullable|string',
-            'parent.connect' => 'nullable|numeric|exists:product_categories,id',
+            'title' => ['required', 'string', 'min:2'],
+            'parent_id' => ['nullable', Rule::exists(
+                ProductCategory::getTableName(), 'id'
+            )
+            ]
         ];
     }
 }

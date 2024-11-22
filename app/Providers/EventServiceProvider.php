@@ -6,9 +6,9 @@ use App\Services\Notification\Events\SmsSent;
 use App\Services\Notification\Listeners\StoreSmsInDatabase;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
-use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Foundation\Support\Providers\EventServiceProvider as BaseEventServiceProvider;
 
-class EventServiceProvider extends ServiceProvider
+class EventServiceProvider extends BaseEventServiceProvider
 {
     /**
      * The event to listener mappings for the application.
