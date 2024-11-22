@@ -12,5 +12,9 @@ Route::namespace('App\Http\Controllers\Admin')->group(function () {
         Route::handler('product-categories');
     });
 
+    Route::namespace('Attribute')->group(function () {
+        Route::handler('attributes');
+    });
+
 });
 

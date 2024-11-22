@@ -14,11 +14,6 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         return User::class;
     }
 
-    public function index()
-    {
-        return $this->getModel()->filtered()->paginate();
-    }
-
     public function changeRole(int $userId)
     {
         $user = $this->find($userId);

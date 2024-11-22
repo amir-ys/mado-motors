@@ -11,9 +11,4 @@ class ProductCategoryRepository extends BaseRepository implements ProductCategor
     {
         return ProductCategory::class;
     }
-
-    public function index()
-    {
-        return $this->filtered()->paginate();
-    }
 }
