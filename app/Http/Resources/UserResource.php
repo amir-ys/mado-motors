@@ -10,12 +10,12 @@ class UserResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'cell_number' => $this->cell_number,
-            'role' => $this->role,
-            'requests' => RequestResource::collection($this->whenLoaded('requests')),
-            'requests_count' => $this->when($this->requests_count !== null, $this->requests_count),
-            'verified' => $this->verified,
+            'first_name' => $this->first_name,
+            'last_name' => $this->last_name,
+            'national_code' => $this->national_code,
+            'mobile' => $this->mobile,
+            'email' => $this->email,
+            'phone' => $this->phone,
             'created_at' => $this->created_at,
         ];
     }

@@ -16,9 +16,10 @@ return new class extends Migration {
             $table->string('last_name', 190);
             $table->string('national_code', 10)->unique();
             $table->string('mobile', 20)->unique();
-            $table->string('phone', 20);
+            $table->string('phone', 20)->nullable();
             $table->string('email')->unique()->nullable();
             $table->string('password');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

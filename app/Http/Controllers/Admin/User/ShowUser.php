@@ -6,22 +6,18 @@ use App\Contracts\UserRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use App\Utilities\ApiResponse;
+use Illuminate\Http\JsonResponse;
 
 class ShowUser extends Controller
 {
 
-    public function __invoke(User $user): UserResource
+    public function __invoke($id): JsonResponse
     {
-        return UserResource::make(
-            app(UserRepositoryInterface::class)->show($user->id)
+        return ApiResponse::success(
+            UserResource::make(
+                app(UserRepositoryInterface::class)->find($id)
+            )
         );
     }
-
-    public function ShowMyInfo(): UserResource
-    {
-        return UserResource::make(
-            app(UserRepositoryInterface::class)->showMyInfo()
-        );
-    }
-
 }

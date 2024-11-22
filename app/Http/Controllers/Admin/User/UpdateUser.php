@@ -6,23 +6,19 @@ use App\Contracts\UserRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Http\Resources\UserResource;
-use App\Models\User;
+use App\Utilities\ApiResponse;
+use Illuminate\Http\JsonResponse;
 
 class UpdateUser extends Controller
 {
 
-    public function __invoke(User $user, UpdateUserRequest $request): UserResource
+    public function __invoke($id, UpdateUserRequest $request): JsonResponse
     {
-        return UserResource::make(
-            app(UserRepositoryInterface::class)->update($request->validated(), $user->id)
+        return ApiResponse::success(
+            UserResource::make(
+                app(UserRepositoryInterface::class)
+                    ->update($request->validated(), $id)
+            )
         );
     }
-
-    public function UpdateMyInfo(UpdateUserRequest $request): UserResource
-    {
-        return UserResource::make(
-            app(UserRepositoryInterface::class)->update($request->validated(), auth()->id())
-        );
-    }
-
 }

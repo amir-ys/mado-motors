@@ -7,60 +7,37 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
-class UserRepository implements UserRepositoryInterface
+class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
-    public function destroy(int $userId)
+    public function model()
     {
-        $user = User::findOrFail($userId);
-        return $user->delete();
+        return User::class;
     }
 
     public function index()
     {
-        return User::withCount("requests")->filtered()->paginate();
-    }
-
-    public function show(int $userId)
-    {
-        return User::with("requests")
-            ->withCount("requests")
-            ->findOrFail($userId);
+        return $this->getModel()->filtered()->paginate();
     }
 
     public function changeRole(int $userId)
     {
-        $user = User::findOrFail($userId);
+        $user = $this->find($userId);
         $user->role = $user->role == "user" ? "admin" : "user";
         $user->save();
-        $user->load(["requests"]);
-        $user->loadCount(["requests"]);
         return $user;
-    }
-
-    public function showMyInfo()
-    {
-        return User::with("requests")
-            ->withCount("requests")
-            ->findOrFail(auth()->id());
     }
 
     public function store(array $data): Model|Builder
     {
         $data['password'] = bcrypt($data['password']);
-        $data['verified'] = 1;
-        $user = User::query()->create($data);
-        $user->load(["requests"]);
-        $user->loadCount(["requests"]);
-        return $user;
+        return $this->create($data);
     }
 
-    public function update(array $data, int $userId)
+    public function update(array $attributes, $id)
     {
-        $data['password'] = bcrypt($data["password"]);
-        $user = User::findOrFail($userId);
-        $user->fill($data);
-        $user->load(["requests"]);
-        $user->loadCount(["requests"]);
+        $user = $this->find($id);
+        $attributes['password'] = bcrypt($attributes["password"]);
+        $user->fill($attributes);
         $user->save();
         return $user;
     }
