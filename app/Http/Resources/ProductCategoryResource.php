@@ -12,7 +12,6 @@ class ProductCategoryResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
-            'parent_id' => $this->parent_id,
             'parent' => ProductCategoryResource::make($this->whenLoaded('parent')),
             'ancestors' => ProductCategoryResource::collection($this->whenLoaded('ancestors')),
             'children' => ProductCategoryResource::collection($this->whenLoaded('children')),

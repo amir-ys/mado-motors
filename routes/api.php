@@ -16,5 +16,9 @@ Route::namespace('App\Http\Controllers\Admin')->group(function () {
         Route::handler('attributes');
     });
 
+    Route::namespace('AttributeValue')->group(function () {
+        Route::handler('attribute-values');
+    });
+
 });
 

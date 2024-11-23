@@ -24,7 +24,7 @@ class ProductDetailFactory extends Factory
             'chassis_number' => $this->faker->word,
             'engine_number' => $this->faker->word,
             'plaque number' => $this->faker->optional()->word,
-            'year_of_production' => $this->faker->year,
+            'year_of_production' => now()->format('Y-m-d'),
         ];
     }
 }

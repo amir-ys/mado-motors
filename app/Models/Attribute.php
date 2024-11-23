@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use App\Services\Media\HasMediaTrait;
 use App\Services\Searchable\SearchableTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Attribute extends Model
 {
-    use  HasMediaTrait, BasicModel, SearchableTrait;
+    use  BasicModel, SearchableTrait, HasFactory;
 
     protected $fillable = ['name'];
 

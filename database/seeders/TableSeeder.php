@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Agent;
+use App\Models\Attribute;
+use App\Models\AttributeValue;
 use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\Comment;
@@ -44,5 +46,7 @@ class TableSeeder extends Seeder
         Comment::factory(20)->create();
         ProductDetail::factory(10)->create();
         Setting::factory(5)->create();
+        Attribute::factory(5)->create();
+        AttributeValue::factory(5)->create();
     }
 }

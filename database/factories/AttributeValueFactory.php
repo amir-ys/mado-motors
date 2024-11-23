@@ -2,12 +2,14 @@
 
 namespace Database\Factories;
 
+use App\Models\Attribute;
+use App\Models\AttributeValue;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ProductCategory>
+ * @extends Factory<AttributeValue>
  */
-class CategoryFactory extends Factory
+class AttributeValueFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +19,8 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->word,
-            'parent_id' => $this->faker->optional()->randomDigitNotNull,
+            'value' => $this->faker->text,
+            'attribute_id' => Attribute::factory(),
         ];
     }
 }

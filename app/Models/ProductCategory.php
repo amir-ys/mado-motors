@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Services\Media\HasMediaTrait;
 use App\Services\Searchable\SearchableTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ProductCategory extends Model
 {
-    use  HasMediaTrait, BasicModel, SearchableTrait, SoftDeletes;
+    use BasicModel, SearchableTrait, SoftDeletes, HasFactory;
 
     protected $fillable = ['title', 'parent_id'];
 
