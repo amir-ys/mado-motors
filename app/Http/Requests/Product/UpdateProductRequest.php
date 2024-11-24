@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Product;
 
+use App\Models\ProductCategory;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateProductRequest extends FormRequest
 {
@@ -24,10 +26,19 @@ class UpdateProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string',
-            'summary' => 'nullable|string',
-            'description' => 'nullable|string',
-            'category_id' => 'nullable|numeric|exists:product_categories,id',
+            'title_fa' => ['required', 'string', 'max:255'],
+            'title_en' => ['required', 'string', 'max:255'],
+            'description' => ['nullable', 'string'],
+            'category_id' => ['required', Rule::exists(ProductCategory::getTableName(), 'id')],
+            'base_price' => ['required', 'integer', 'min:0'],
+
+            'variants' => ['required', 'array', 'min:1'],
+            'variants.*.id' => ['nullable', 'exists:product_variants,id'],
+            'variants.*.original_price' => ['required', 'integer', 'min:0'],
+            'variants.*.payable_price' => ['required', 'integer', 'min:0', 'lte:variants.*.original_price'],
+            'variants.*.quantity' => ['required', 'integer', 'min:0'],
+            'variants.*.attributes' => ['required', 'array', 'min:1'],
+            'variants.*.attributes.*.attribute_value_id' => ['required', 'exists:attribute_values,id'],
         ];
     }
 }

@@ -6,16 +6,22 @@ use App\Contracts\ProductRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\UpdateProductRequest;
 use App\Http\Resources\ProductResource;
-use App\Models\Product;
+use App\Utilities\ApiResponse;
+use Illuminate\Http\JsonResponse;
 
 class UpdateProduct extends Controller
 {
-    public function __invoke(Product $product, UpdateProductRequest $updateProductRequest): ProductResource
+    public function __invoke(
+        $id,
+        UpdateProductRequest $updateProductRequest
+    ): JsonResponse
     {
-        return ProductResource::make(
-            app(ProductRepositoryInterface::class)->update(
-                $updateProductRequest->only(['title', 'summary', 'category_id', 'description']),
-                $product->id
+        return ApiResponse::success(
+            ProductResource::make(
+                app(ProductRepositoryInterface::class)->update(
+                    $updateProductRequest->validated(),
+                    $id
+                )
             )
         );
     }

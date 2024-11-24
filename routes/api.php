@@ -20,5 +20,9 @@ Route::namespace('App\Http\Controllers\Admin')->group(function () {
         Route::handler('attribute-values');
     });
 
+    Route::namespace('Product')->group(function () {
+        Route::handler('products');
+    });
+
 });
 

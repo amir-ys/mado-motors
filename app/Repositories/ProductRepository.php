@@ -4,142 +4,128 @@ namespace App\Repositories;
 
 use App\Contracts\ProductRepositoryInterface;
 use App\Models\Product;
-use App\Models\ProductVariation;
-use App\Services\Media\MediaHelper;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
-class ProductRepository implements ProductRepositoryInterface
+class ProductRepository extends BaseRepository implements ProductRepositoryInterface
 {
-    public function destroy($productId)
+    public function model(): string
     {
-        $product = Product::findOrFail($productId);
-        foreach ($product->variations as $item) {
-            $item->delete();
-        }
-        return $product->delete();
+        return Product::class;
     }
 
     public function index()
     {
-        return Product::with([
-            "category" => function ($q) {
-                $q->with("ancestors");
-            },
-            "variations",
-            "main_image"
-        ])->filtered()->paginate();
-    }
-
-    public function indexOnline(): LengthAwarePaginator
-    {
-        return Product::with([
-            "category" => function ($q) {
-                $q->with("ancestors");
-            },
-            "variations",
-            "main_image"
-        ])->filtered()->paginate();
-    }
-
-    public function show($productId)
-    {
-        $product = Product::findOrFail($productId);
-        $product->load([
-            "category" => function ($q) {
-                $q->with("ancestors");
-            },
-            "variations",
-            "main_image",
-            "media"
-        ]);
-        return $product;
-    }
-
-    public function similarProducts($productId)
-    {
-        $product = Product::findOrFail($productId);
-        $productCategoryId = $product->category ? $product->category->id : 0;
-        $similarProducts = Product::query()
-            ->whereHas(
-                'category', function ($query) use ($productCategoryId) {
-                $query->where('id', $productCategoryId);
-            })
+        return Product::query()
             ->with([
-                "category" => function ($q) {
-                    $q->with("ancestors");
-                },
-                "variations",
-                "main_image"
+                "category",
+                "variants",
+                "variants.attributes",
+                "variants.attributes.attribute"
             ])
-            ->get();
-        if (!$similarProducts->isEmpty()) {
-            $similarProductsCount = $similarProducts->count();
-            $similarSelectedProductsCount = min($similarProductsCount, 8);
-            return $similarProducts->random($similarSelectedProductsCount);
-        } else {
-            return $similarProducts;
-        }
+            ->filtered()
+            ->paginate();
     }
 
-    public function showOnline($productId)
+    public function show($id)
     {
-        $product = Product::findOrFail($productId);
+        $product = $this->find($id);
         $product->load([
-            "category" => function ($q) {
-                $q->with("ancestors");
-            },
-            "variations",
-            "main_image",
-            "media"
+            "category",
+            "variants",
+            "variants.attributes",
+            "variants.attributes.attribute"
         ]);
         return $product;
     }
 
-    public function store($data): Model|Builder
+    public function store($attributes): Model|Builder
     {
-        $product = Product::query()->create(Arr::except($data, "variations"));
+        #todo fill creator_id
+        $attributes = Arr::add($attributes, 'creator_id', 10);
+        $product = $this->create(Arr::except($attributes, "variants"));
 
-        MediaHelper::storeMediaFor($product);
+        #todo store media
+//        MediaHelper::storeMediaFor($product);
 
-        if (Arr::has($data, "variations")) {
-            foreach ($data["variations"] as $variation) {
-                $product->variations()->create($variation);
+        if (Arr::has($attributes, "variants")) {
+            foreach ($attributes["variants"] as $variation) {
+                $variant = $product->variants()->create($variation);
+
+                foreach ($variation['attributes'] as $attributeData) {
+                    $variant->attributes()->attach($attributeData['attribute_value_id']);
+                }
             }
         }
 
         $product->load([
-            "category" => function ($q) {
-                $q->with("ancestors");
-            },
-            "variations",
-            "main_image"
+            "category",
+            "variants",
+            "variants.attributes",
+            "variants.attributes.attribute"
         ]);
+
         return $product;
     }
 
-    public function update(array $data, int $productId)
+    public function update(array $attributes, $id)
     {
-        $product = Product::findOrFail($productId);
-        $product->update($data);
+        $product = $this->find($id);
 
-        MediaHelper::storeMediaFor($product);
+        // آپدیت اطلاعات محصول
+        $product->update([
+            'title_fa' => $attributes['title_fa'],
+            'title_en' => $attributes['title_en'],
+            'description' => $attributes['description'] ?? null,
+            'category_id' => $attributes['category_id'],
+            'base_price' => $attributes['base_price'],
+        ]);
 
-        if (Arr::has($data, "variations")) {
-            foreach ($data["variations"] as $variation) {
-                ProductVariation::query()->create($variation);
+        $variantIds = []; // برای نگه‌داشتن واریانت‌هایی که باید باقی بمانند
+        foreach ($attributes['variants'] as $variantData) {
+            if (isset($variantData['id'])) {
+                $variant = $product->variants()->findOrFail($variantData['id']);
+                $variant->update([
+                    'original_price' => $variantData['original_price'],
+                    'payable_price' => $variantData['payable_price'],
+                    'quantity' => $variantData['quantity'],
+                ]);
+            } else {
+                $variant = $product->variants()->create([
+                    'original_price' => $variantData['original_price'],
+                    'payable_price' => $variantData['payable_price'],
+                    'quantity' => $variantData['quantity'],
+                ]);
             }
+
+            $variantIds[] = $variant->id;
+
+            $variant->attributes()->sync(
+                collect($variantData['attributes'])->pluck('attribute_value_id')
+            );
         }
 
+        $product->variants()->whereNotIn('id', $variantIds)->delete();
+
         $product->load([
-            "category" => function ($q) {
-                $q->with("ancestors");
-            },
-            "variations",
-            "main_image"
+            "category",
+            "variants",
+            "variants.attributes",
+            "variants.attributes.attribute"
         ]);
+
         return $product;
+    }
+
+    public function destroy($id)
+    {
+        $product = $this->find($id);
+        $product->variants()->each(function ($variant) {
+            $variant->attributes()->detach();
+            $variant->delete();
+        });
+
+        return $product->delete();
     }
 }

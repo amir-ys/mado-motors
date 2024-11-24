@@ -11,7 +11,6 @@ class AttributeValue extends Model
 {
     use BasicModel, SearchableTrait, HasFactory;
 
-    protected $table = 'attribute_values';
     protected $fillable = ['attribute_id', 'value'];
 
     protected array $searchable = ['value'];
@@ -24,5 +23,12 @@ class AttributeValue extends Model
     public function attribute(): BelongsTo
     {
         return $this->belongsTo(Attribute::class);
+    }
+
+    public function variants()
+    {
+        return $this->belongsToMany(
+            ProductVariant::class, 'product_variant_attributes'
+        )->withTimestamps();
     }
 }

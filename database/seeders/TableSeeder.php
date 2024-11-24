@@ -16,6 +16,7 @@ use App\Models\ProductCategory;
 use App\Models\ProductDetail;
 use App\Models\ProductReview;
 use App\Models\ProductReviewPoint;
+use App\Models\ProductVariant;
 use App\Models\ReviewPoint;
 use App\Models\Setting;
 use App\Models\User;
@@ -48,5 +49,6 @@ class TableSeeder extends Seeder
         Setting::factory(5)->create();
         Attribute::factory(5)->create();
         AttributeValue::factory(5)->create();
+        ProductVariant::factory(20)->create();
     }
 }

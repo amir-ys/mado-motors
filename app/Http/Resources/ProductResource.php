@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\Services\Media\Resources\MediaResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductResource extends JsonResource
@@ -11,17 +10,19 @@ class ProductResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
+            'title_fa' => $this->title_fa,
             'title_en' => $this->title_en,
-            'summary' => $this->summary,
             'description' => $this->description,
-            'creator_id' => $this->creator_id,
+            'spod_id' => $this->spod_id,
+            'original_price' => $this->original_price,
+            'payable_price' => $this->payable_price,
+            'quantity' => $this->quantity,
             'category' => ProductCategoryResource::make($this->whenLoaded('category')),
             'creator' => UserResource::make($this->whenLoaded('creator')),
-            'variations' => ProductVariationResource::collection($this->whenLoaded('variations')),
-            'media' => MediaResource::collection($this->whenLoaded('media')),
-            'thumbnail' => $this->getFirstMediaUrl('main_image', 'thumbnail'),
-            'main_image' => $this->getFirstMediaUrl('main_image'),
+            'variants' => ProductVariantResource::collection($this->whenLoaded('variants')),
+//            'variations' => ProductVariationResource::collection($this->whenLoaded('variations')),
+//            'media' => MediaResource::collection($this->whenLoaded('media')),
+//            'main_image' => $this->getFirstMediaUrl('main_image'),
             'created_at' => $this->created_at,
         ];
     }

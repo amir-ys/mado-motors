@@ -11,7 +11,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('product_id')->constrained()->cascadeOnDelete();
             $table->integer('original_price');
-            $table->integer('payable_Price');
+            $table->integer('payable_price');
             $table->integer('quantity');
             #todo sku field
 //            $table->string('sku');

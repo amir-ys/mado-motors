@@ -20,7 +20,7 @@ class CommentFactory extends Factory
         return [
             'user_id' => $this->faker->randomDigitNotNull,
             'parent_id' => $this->faker->randomElement([
-                Comment::query()->inRandomOrder()->first()->id,
+                Comment::query()->inRandomOrder()->first()?->id,
                 null
             ]),
             'body' => $this->faker->paragraph,

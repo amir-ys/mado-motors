@@ -14,14 +14,12 @@ return new class extends Migration {
             $table->id();
             $table->string('title_fa');
             $table->string('title_en');
-            $table->foreignId('category_id')
-                ->constrained('product_categories')
-                ->cascadeOnDelete();
+            $table->foreignId('category_id')->constrained('product_categories')->cascadeOnDelete();
+            $table->foreignId('creator_id')->constrained('users')->cascadeOnDelete();
             $table->longText('description');
             $table->string('spod_id')->nullable();
-            #todo price and quantity price
             $table->integer('original_price')->nullable();
-            $table->integer('payable_Price')->nullable();
+            $table->integer('payable_price')->nullable();
             $table->integer('quantity')->nullable();
             $table->softDeletes();
             $table->timestamps();
