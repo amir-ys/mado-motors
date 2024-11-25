@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin\User;
 
 use App\Contracts\UserRepositoryInterface;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\User\UpdateUserRequest;
+use App\Http\Requests\Admin\User\UpdateUserRequest;
 use App\Http\Resources\UserResource;
 use App\Utilities\ApiResponse;
 use Illuminate\Http\JsonResponse;

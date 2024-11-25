@@ -36,4 +36,9 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         $user->save();
         return $user;
     }
+
+    public function findByMobile($mobile)
+    {
+        return $this->getModel()->findForPassport($mobile);
+    }
 }

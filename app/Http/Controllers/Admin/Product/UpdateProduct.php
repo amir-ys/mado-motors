@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin\Product;
 
 use App\Contracts\ProductRepositoryInterface;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Product\UpdateProductRequest;
+use App\Http\Requests\Admin\Product\UpdateProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Utilities\ApiResponse;
 use Illuminate\Http\JsonResponse;

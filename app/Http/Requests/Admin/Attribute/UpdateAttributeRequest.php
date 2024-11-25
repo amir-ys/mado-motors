@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Requests\ProductCategory;
+namespace App\Http\Requests\Admin\Attribute;
 
-use App\Models\ProductCategory;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class StoreProductCategoryRequest extends FormRequest
+class UpdateAttributeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,11 +24,7 @@ class StoreProductCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'string', 'min:2'],
-            'parent_id' => ['nullable', Rule::exists(
-                ProductCategory::getTableName(), 'id'
-            )
-            ]
+            'name' => ['required', 'string', 'min:2'],
         ];
     }
 }

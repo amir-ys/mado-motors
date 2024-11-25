@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\Rules\ValidateMobile;
 use Illuminate\Foundation\Http\FormRequest;
 
 class LoginRequest extends FormRequest
@@ -23,8 +24,12 @@ class LoginRequest extends FormRequest
      */
     public function rules(): array
     {
+        #todo password validation
         return [
-            'cell_number' => 'required|string|regex:/^09[0-9]{9}$/',
+            'mobile' => [
+                'required',
+                new ValidateMobile(),
+            ],
             'password' => 'required|min:6',
         ];
     }

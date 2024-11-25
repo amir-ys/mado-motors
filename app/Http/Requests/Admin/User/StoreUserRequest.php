@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests\Admin\User;
 
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateUserRequest extends FormRequest
+class StoreUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -32,23 +32,21 @@ class UpdateUserRequest extends FormRequest
                 'required',
                 'string',
                 'regex:/^09[0-9]{9}$/',
-                Rule::unique('users', 'mobile')->whereNull('deleted_at')
+                Rule::unique('users', 'mobile')
+                    ->whereNull('deleted_at')
             ],
-            #todo add national code validator
             'national_code' => [
                 'required',
                 'digits:10',
                 Rule::unique(User::getTableName(), 'national_code')
-                    ->ignore($this->route()->parameter('user'))
             ],
+            #todo add national code validator
             'phone' => 'nullable',
             'email' => [
                 'nullable',
                 'email',
-                Rule::unique(User::getTableName(), 'email')
-                    ->ignore($this->route()->parameter('user'))
-            ],
-            'password' => 'required|confirmed|min:6',
+                Rule::unique(User::getTableName())
+            ], 'password' => 'required|confirmed|min:6',
         ];
     }
 }

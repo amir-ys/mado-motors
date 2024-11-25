@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Attribute;
+namespace App\Http\Requests\Admin\AttributeValue;
 
+use App\Models\AttributeValue;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class StoreAttributeRequest extends FormRequest
+class UpdateAttributeValueRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +26,10 @@ class StoreAttributeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'min:2'],
+            'value' => ['required', 'string', 'min:2'],
+            'attribute_id' => [
+                'required', Rule::exists(AttributeValue::getTableName())
+            ],
         ];
     }
 }

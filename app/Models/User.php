@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
+use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -19,7 +21,8 @@ class User extends Authenticatable
         BasicModel,
         SearchableTrait,
         SoftDeletes,
-        HasRoles;
+        HasRoles,
+        HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -53,8 +56,24 @@ class User extends Authenticatable
         ];
     }
 
-    public static function getTableName()
+    public static function getTableName(): string
     {
         return 'users';
+    }
+
+    /**
+     * Find the user instance for the given username.
+     */
+    public function findForPassport(string $username): User
+    {
+        return $this->where('mobile', $username)->first();
+    }
+
+    /**
+     * Validate the password of the user for the Passport password grant.
+     */
+    public function validateForPassportPasswordGrant(string $password): bool
+    {
+        return Hash::check($password, $this->password);
     }
 }

@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\Models\User;
+use App\Rules\ValidateMobile;
+use App\Rules\ValidateNationalCode;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -25,14 +28,22 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'nullable|string|max:255',
-            'cell_number' => [
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'mobile' => [
                 'required',
-                'string',
-                'regex:/^09[0-9]{9}$/',
-                Rule::unique('users', 'cell_number')->where('verified', 1)->whereNull('deleted_at')
+                new ValidateMobile(),
+                Rule::unique(User::getTableName(), 'mobile')
+                    ->whereNull('deleted_at')
             ],
-            'password' => 'required|confirmed|min:6',
+            'national_code' => [
+                'required',
+                'digits:10',
+                new ValidateNationalCode(),
+                Rule::unique(User::getTableName(), 'national_code')
+                    ->whereNull('deleted_at')
+            ],
+            'password' => ['required', 'confirmed', 'min:6'],
         ];
     }
 }
