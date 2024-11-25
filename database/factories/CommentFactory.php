@@ -26,7 +26,7 @@ class CommentFactory extends Factory
             'body' => $this->faker->paragraph,
             'commentable_id' => $this->faker->randomDigitNotNull,
             'commentable_type' => $this->faker->randomElement(['product', 'review', 'order']),
-            'status' => $this->faker->numberBetween(1, 3),
+            'status' => $this->faker->numberBetween(0, 2),
         ];
 
     }

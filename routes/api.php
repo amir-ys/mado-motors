@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\Comment\ChangeCommentStatus;
+use App\Http\Controllers\Admin\Comment\IndexComment;
+use App\Http\Controllers\Admin\Comment\ShowComment;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +38,12 @@ Route::namespace('App\Http\Controllers\Admin')
 
         Route::namespace('Product')->group(function () {
             Route::handler('products');
+        });
+
+        Route::namespace('Comment')->group(callback: function () {
+            Route::get('comments', IndexComment::class);
+            Route::get('comments/{id}', ShowComment::class, 'show');
+            Route::patch('comments/{id}/change-status', ChangeCommentStatus::class);
         });
 
     });

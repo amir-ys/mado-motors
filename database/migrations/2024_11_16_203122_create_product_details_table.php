@@ -12,15 +12,10 @@ return new class extends Migration {
     {
         Schema::create('product_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_id')->nullable()
-                ->constrained('orders')->cascadeOnDelete();
-            $table->foreignId('payment_id')->nullable()
-                ->constrained('payments')->cascadeOnDelete();
-            $table->foreignId('owner_id')->nullable()
-                ->constrained('users')->cascadeOnDelete();
-            $table->foreignId('agent_id')->nullable()
-                ->constrained('agents')
-                ->cascadeOnDelete();
+            $table->foreignId('order_id')->nullable()->constrained('orders')->cascadeOnDelete();
+            $table->foreignId('payment_id')->nullable()->constrained('payments')->cascadeOnDelete();
+            $table->foreignId('owner_id')->nullable()->constrained('users')->cascadeOnDelete();
+            $table->foreignId('agent_id')->nullable()->constrained('agents')->cascadeOnDelete();
             $table->string('chassis_number');
             $table->string('engine_number');
             $table->string('plaque number')->nullable();

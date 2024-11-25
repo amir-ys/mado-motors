@@ -2,6 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Agent;
+use App\Models\Order;
+use App\Models\Payment;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,10 +21,10 @@ class ProductDetailFactory extends Factory
     public function definition(): array
     {
         return [
-            'order_id' => $this->faker->optional()->randomDigitNotNull,
-            'payment_id' => $this->faker->optional()->randomDigitNotNull,
-            'owner_id' => $this->faker->optional()->randomDigitNotNull,
-            'agent_id' => $this->faker->optional()->randomDigitNotNull,
+            'order_id' => Order::factory(),
+            'payment_id' => Payment::factory(),
+            'owner_id' => User::factory(),
+            'agent_id' => Agent::factory(),
             'chassis_number' => $this->faker->word,
             'engine_number' => $this->faker->word,
             'plaque number' => $this->faker->optional()->word,

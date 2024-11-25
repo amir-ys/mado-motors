@@ -39,6 +39,6 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
 
     public function findByMobile($mobile)
     {
-        return $this->getModel()->findForPassport($mobile);
+        return $this->whereMobile($mobile)->first();
     }
 }
