@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin\User;
 use App\Contracts\UserRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
-use App\Models\User;
 use App\Utilities\ApiResponse;
 use Illuminate\Http\JsonResponse;
 

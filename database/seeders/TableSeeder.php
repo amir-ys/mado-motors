@@ -43,7 +43,6 @@ class TableSeeder extends Seeder
         Payment::factory(10)->create();
         ReviewPoint::factory(10)->create();
         ProductReview::factory(10)->create();
-        ProductReviewPoint::factory(10)->create();
         Comment::factory(20)->create();
         ProductDetail::factory(10)->create();
         Setting::factory(5)->create();

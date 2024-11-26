@@ -18,8 +18,9 @@ return new class extends Migration {
             $table->foreignId('agent_id')->nullable()->constrained('agents')->cascadeOnDelete();
             $table->string('chassis_number');
             $table->string('engine_number');
-            $table->string('plaque number')->nullable();
+            $table->string('plaque_number')->nullable();
             $table->date('year_of_production');
+            $table->softDeletes();
             $table->timestamps();
         });
 

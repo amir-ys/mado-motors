@@ -15,7 +15,8 @@ return new class extends Migration {
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->integer('total_price');
             $table->tinyInteger('status');
-            $table->foreignId('address_id')->constrained('user_addresses')
+            $table->foreignId('address_id')
+                ->constrained('user_addresses')
                 ->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();

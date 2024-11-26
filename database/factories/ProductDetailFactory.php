@@ -27,7 +27,7 @@ class ProductDetailFactory extends Factory
             'agent_id' => Agent::factory(),
             'chassis_number' => $this->faker->word,
             'engine_number' => $this->faker->word,
-            'plaque number' => $this->faker->optional()->word,
+            'plaque_number' => $this->faker->optional()->word,
             'year_of_production' => now()->format('Y-m-d'),
         ];
     }
