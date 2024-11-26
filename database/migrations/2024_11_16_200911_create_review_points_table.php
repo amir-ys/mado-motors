@@ -12,8 +12,7 @@ return new class extends Migration {
     {
         Schema::create('review_points', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->nullable()
-                ->constrained('products')->cascadeOnDelete();
+            $table->foreignId('product_id')->nullable()->constrained('products')->cascadeOnDelete();
             $table->tinyInteger('type');
             $table->text('text');
             $table->softDeletes();

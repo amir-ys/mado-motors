@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\ReviewPoint;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ReviewPoint>
+ * @extends Factory<ReviewPoint>
  */
 class ReviewPointFactory extends Factory
 {
@@ -18,7 +19,7 @@ class ReviewPointFactory extends Factory
     {
         return [
             'product_id' => $this->faker->optional()->randomDigitNotNull,
-            'type' => $this->faker->numberBetween(1, 5),
+            'type' => $this->faker->numberBetween(0, 1),
             'text' => $this->faker->paragraph,
         ];
     }

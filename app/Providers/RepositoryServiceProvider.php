@@ -9,6 +9,7 @@ use App\Contracts\CartRepositoryInterface;
 use App\Contracts\CommentRepositoryInterface;
 use App\Contracts\ProductCategoryRepositoryInterface;
 use App\Contracts\ProductRepositoryInterface;
+use App\Contracts\ReviewPointRepositoryInterface;
 use App\Contracts\UserRepositoryInterface;
 use App\Repositories\AttributeRepository;
 use App\Repositories\AttributeValueRepository;
@@ -17,6 +18,7 @@ use App\Repositories\CartRepository;
 use App\Repositories\CommentRepository;
 use App\Repositories\ProductCategoryRepository;
 use App\Repositories\ProductRepository;
+use App\Repositories\ReviewPointRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -31,5 +33,6 @@ class RepositoryServiceProvider extends ServiceProvider
         CommentRepositoryInterface::class => CommentRepository::class,
         CartRepositoryInterface::class => CartRepository::class,
         CartItemRepositoryInterface::class => CartItemRepository::class,
+        ReviewPointRepositoryInterface::class => ReviewPointRepository::class,
     ];
 }

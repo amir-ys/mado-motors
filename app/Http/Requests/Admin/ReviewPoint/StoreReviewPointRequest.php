@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Requests\Admin\Attribute;
+namespace App\Http\Requests\Admin\ReviewPoint;
 
+use App\Enums\ReviewPointTypeEnum;
+use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class StoreAttributeRequest extends FormRequest
+class StoreReviewPointRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +27,9 @@ class StoreAttributeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'min:2'],
+            'product_id' => ['nullable', Rule::exists(Product::getTableName())],
+            'type' => ['required', Rule::enum(ReviewPointTypeEnum::class)],
+            'text' => ['required', 'string', 'min:2'],
         ];
     }
 }

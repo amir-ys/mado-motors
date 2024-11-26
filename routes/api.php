@@ -53,4 +53,7 @@ Route::namespace('App\Http\Controllers\Admin')
             Route::get('cart-items/{cart}', IndexCartItem::class);
         });
 
+        Route::namespace('ReviewPoint')->group(function () {
+            Route::handler('review-points');
+        });
     });
