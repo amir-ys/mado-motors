@@ -4,12 +4,16 @@ namespace App\Providers;
 
 use App\Contracts\AttributeRepositoryInterface;
 use App\Contracts\AttributeValueRepositoryInterface;
+use App\Contracts\CartItemRepositoryInterface;
+use App\Contracts\CartRepositoryInterface;
 use App\Contracts\CommentRepositoryInterface;
 use App\Contracts\ProductCategoryRepositoryInterface;
 use App\Contracts\ProductRepositoryInterface;
 use App\Contracts\UserRepositoryInterface;
 use App\Repositories\AttributeRepository;
 use App\Repositories\AttributeValueRepository;
+use App\Repositories\CartItemRepository;
+use App\Repositories\CartRepository;
 use App\Repositories\CommentRepository;
 use App\Repositories\ProductCategoryRepository;
 use App\Repositories\ProductRepository;
@@ -25,5 +29,7 @@ class RepositoryServiceProvider extends ServiceProvider
         AttributeValueRepositoryInterface::class => AttributeValueRepository::class,
         ProductRepositoryInterface::class => ProductRepository::class,
         CommentRepositoryInterface::class => CommentRepository::class,
+        CartRepositoryInterface::class => CartRepository::class,
+        CartItemRepositoryInterface::class => CartItemRepository::class,
     ];
 }

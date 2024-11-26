@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Product;
+use App\Models\ProductVariant;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,7 +21,7 @@ class CartItemFactory extends Factory
         return [
             'cart_id' => $this->faker->randomDigitNotNull,
             'product_id' => Product::factory(),
-            'product_variant_id' => null,
+            'product_variant_id' => ProductVariant::factory(),
             'quantity' => $this->faker->numberBetween(1, 10),
             'price' => $this->faker->randomNumber(4, true),
         ];

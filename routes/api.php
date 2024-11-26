@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\Cart\IndexCart;
+use App\Http\Controllers\Admin\Cart\IndexCartItem;
 use App\Http\Controllers\Admin\Comment\ChangeCommentStatus;
 use App\Http\Controllers\Admin\Comment\IndexComment;
 use App\Http\Controllers\Admin\Comment\ShowComment;
@@ -44,6 +46,11 @@ Route::namespace('App\Http\Controllers\Admin')
             Route::get('comments', IndexComment::class);
             Route::get('comments/{id}', ShowComment::class, 'show');
             Route::patch('comments/{id}/change-status', ChangeCommentStatus::class);
+        });
+
+        Route::namespace('Cart')->group(callback: function () {
+            Route::get('carts', IndexCart::class);
+            Route::get('cart-items/{cart}', IndexCartItem::class);
         });
 
     });
