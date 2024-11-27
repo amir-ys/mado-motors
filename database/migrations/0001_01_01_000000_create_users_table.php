@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->string('mobile', 20)->unique();
             $table->string('phone', 20)->nullable();
             $table->string('email')->unique()->nullable();
+            $table->foreignId('main_address_id')->nullable();
             $table->string('password');
             $table->softDeletes();
             $table->timestamps();

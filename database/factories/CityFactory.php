@@ -17,15 +17,12 @@ class CityFactory extends Factory
     public function definition(): array
     {
         return [
-            'parent_id' => $this->faker->optional()->randomDigitNotNull,
-            '_lft' => $this->faker->randomNumber(3),
-            '_rgt' => $this->faker->randomNumber(3),
             'name_fa' => $this->faker->city,
             'name_en' => $this->faker->city,
-            'type' => $this->faker->numberBetween(0, 1),
-            'region' => $this->faker->optional()->word,
             'latitude' => $this->faker->latitude,
             'longitude' => $this->faker->longitude,
+            'view' => 1,
+            'parent_id' => null,
         ];
     }
 }

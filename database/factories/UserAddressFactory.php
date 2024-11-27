@@ -2,10 +2,13 @@
 
 namespace Database\Factories;
 
+use App\Models\City;
+use App\Models\User;
+use App\Models\UserAddress;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UserAddress>
+ * @extends Factory<UserAddress>
  */
 class UserAddressFactory extends Factory
 {
@@ -17,8 +20,8 @@ class UserAddressFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => $this->faker->randomDigitNotNull,
-            'city_id' => $this->faker->randomDigitNotNull,
+            'user_id' => User::factory(),
+            'city_id' => City::factory(),
             'address' => $this->faker->address,
             'postal_code' => $this->faker->postcode,
             'latitude' => 0,

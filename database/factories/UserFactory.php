@@ -28,6 +28,7 @@ class UserFactory extends Factory
             'mobile' => $this->faker->unique()->phoneNumber,
             'phone' => $this->faker->phoneNumber,
             'email' => $this->faker->unique()->safeEmail(),
+            'main_address_id' => null,
             'password' => bcrypt('password123'),
         ];
     }

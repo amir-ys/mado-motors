@@ -16,6 +16,7 @@ class UserResource extends JsonResource
             'mobile' => $this->mobile,
             'email' => $this->email,
             'phone' => $this->phone,
+            'mainAddress' => UserResource::make($this->whenLoaded('mainAddress')),
             'created_at' => $this->created_at,
         ];
     }

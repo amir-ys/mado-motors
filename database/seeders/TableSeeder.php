@@ -7,6 +7,7 @@ use App\Models\Attribute;
 use App\Models\AttributeValue;
 use App\Models\Cart;
 use App\Models\CartItem;
+use App\Models\City;
 use App\Models\Comment;
 use App\Models\Order;
 use App\Models\OrderItem;
@@ -34,6 +35,7 @@ class TableSeeder extends Seeder
         User::factory(10)->create();
         ProductCategory::factory(5)->create();
         Product::factory(20)->create();
+        City::factory(10)->create();
         UserAddress::factory(10)->create();
         Agent::factory(5)->create();
         Order::factory(15)->create();

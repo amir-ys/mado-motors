@@ -4,15 +4,14 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
         Schema::create('product_review_point', function (Blueprint $table) {
-            $table->foreignId('review_id')
+            $table->foreignId('product_review_id')
                 ->constrained('product_reviews')->cascadeOnDelete();
             $table->foreignId('point_id')
                 ->constrained('review_points')->cascadeOnDelete();

@@ -6,6 +6,7 @@ namespace App\Models;
 use App\Services\Media\HasMediaTrait;
 use App\Services\Searchable\SearchableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -30,7 +31,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'first_name', 'last_name', 'national_code', 'mobile', 'phone', 'email', 'password',
+        'first_name', 'last_name', 'national_code', 'mobile', 'phone', 'email',
+        'password', 'main_address_id'
     ];
 
     /**
@@ -75,5 +77,10 @@ class User extends Authenticatable
     public function validateForPassportPasswordGrant(string $password): bool
     {
         return Hash::check($password, $this->password);
+    }
+
+    public function mainAddress(): BelongsTo
+    {
+        return $this->belongsTo(UserAddress::class);
     }
 }

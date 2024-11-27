@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -20,6 +19,8 @@ return new class extends Migration
                 ->constrained('users')
                 ->cascadeOnDelete();
             $table->text('text');
+            $table->tinyInteger('status')
+            ->default(\App\Enums\ProductReviewStatusEnum::PENDING);
             $table->softDeletes();
             $table->timestamps();
         });

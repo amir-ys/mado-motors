@@ -9,6 +9,7 @@ use App\Contracts\CartRepositoryInterface;
 use App\Contracts\CommentRepositoryInterface;
 use App\Contracts\ProductCategoryRepositoryInterface;
 use App\Contracts\ProductRepositoryInterface;
+use App\Contracts\ProductReviewRepositoryInterface;
 use App\Contracts\ReviewPointRepositoryInterface;
 use App\Contracts\UserAddressRepositoryInterface;
 use App\Contracts\UserRepositoryInterface;
@@ -19,6 +20,7 @@ use App\Repositories\CartRepository;
 use App\Repositories\CommentRepository;
 use App\Repositories\ProductCategoryRepository;
 use App\Repositories\ProductRepository;
+use App\Repositories\ProductReviewRepository;
 use App\Repositories\ReviewPointRepository;
 use App\Repositories\UserAddressRepository;
 use App\Repositories\UserRepository;
@@ -37,5 +39,6 @@ class RepositoryServiceProvider extends ServiceProvider
         CartItemRepositoryInterface::class => CartItemRepository::class,
         ReviewPointRepositoryInterface::class => ReviewPointRepository::class,
         UserAddressRepositoryInterface::class => UserAddressRepository::class,
+        ProductReviewRepositoryInterface::class => ProductReviewRepository::class,
     ];
 }

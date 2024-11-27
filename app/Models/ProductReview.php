@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ProductReviewStatusEnum;
 use App\Services\Searchable\SearchableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +16,11 @@ class ProductReview extends Model
     protected array $searchable = [];
 
     protected $fillable = [
-        'product_id', 'user_id', 'text',
+        'product_id', 'user_id', 'text', 'status'
+    ];
+
+    protected $casts = [
+        'status' => ProductReviewStatusEnum::class
     ];
 
     public static function getTableName(): string
@@ -31,5 +36,15 @@ class ProductReview extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function points()
+    {
+        return $this->belongsToMany(
+            ReviewPoint::class,
+            'product_review_point',
+            'point_id',
+            'product_review_id'
+        )->withTimestamps();
     }
 }
