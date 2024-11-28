@@ -25,6 +25,12 @@ Route::namespace('App\Http\Controllers\Admin')
     ->middleware('auth:api')
     ->group(function () {
 
+        Route::namespace( 'Media' )->group( function () {
+            Route::post( 'media' , 'StoreMedia' );
+            Route::post( 'file' , 'StoreMedia@store' );
+            Route::delete( 'media/{media}' , 'DestroyMedia' );
+        } );
+
         Route::namespace('User')->group(function () {
             Route::handler('users');
         });

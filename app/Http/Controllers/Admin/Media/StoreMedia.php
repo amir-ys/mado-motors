@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Media;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Request\StoreMediaRequest;
+use App\Http\Requests\Admin\Media\StoreMediaRequest;
 use App\Models\FakeModel;
 use App\Services\Responser;
 use Illuminate\Http\Request;
