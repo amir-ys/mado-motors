@@ -2,10 +2,13 @@
 
 namespace Database\Factories;
 
+use App\Models\Order;
+use App\Models\User;
+use App\Models\UserAddress;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Order>
+ * @extends Factory<Order>
  */
 class OrderFactory extends Factory
 {
@@ -17,10 +20,10 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => $this->faker->randomDigitNotNull,
+            'user_id' => User::factory(),
             'total_price' => $this->faker->randomNumber(5, true),
-            'status' => $this->faker->numberBetween(1, 3),
-            'address_id' => $this->faker->randomDigitNotNull,
+            'status' => $this->faker->numberBetween(0, 2),
+            'address_id' => UserAddress::factory(),
         ];
     }
 }

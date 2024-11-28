@@ -20,9 +20,9 @@ class ProductResource extends JsonResource
             'category' => ProductCategoryResource::make($this->whenLoaded('category')),
             'creator' => UserResource::make($this->whenLoaded('creator')),
             'variants' => ProductVariantResource::collection($this->whenLoaded('variants')),
-//            'variations' => ProductVariationResource::collection($this->whenLoaded('variations')),
 //            'media' => MediaResource::collection($this->whenLoaded('media')),
 //            'main_image' => $this->getFirstMediaUrl('main_image'),
+            'relatedProducts' => ProductResource::collection($this->whenLoaded('relatedProducts')),
             'created_at' => $this->created_at,
         ];
     }
