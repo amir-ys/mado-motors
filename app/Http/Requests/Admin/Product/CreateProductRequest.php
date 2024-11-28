@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin\Product;
 
+use App\Models\Product;
 use App\Models\ProductCategory;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -40,6 +41,8 @@ class CreateProductRequest extends FormRequest
             'variants.*.quantity' => ['required', 'integer', 'min:0'],
             'variants.*.attributes' => ['required', 'array', 'min:1'],
             'variants.*.attributes.*.attribute_value_id' => ['required', 'exists:attribute_values,id'],
+            'related_products' => ['array'],
+            'related_products.*' => ['required' , Rule::exists(Product::getTableName(), 'id')]
         ];
     }
 }

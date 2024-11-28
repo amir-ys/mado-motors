@@ -46,7 +46,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     {
         #todo fill creator_id
         $attributes = Arr::add($attributes, 'creator_id', 10);
-        $product = $this->create(Arr::except($attributes, "variants"));
+        $product = $this->create(Arr::except($attributes, ["variants" , 'related_products']));
 
         #todo store media
 //        MediaHelper::storeMediaFor($product);
@@ -61,11 +61,16 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
             }
         }
 
+        if (Arr::has($attributes, "related_products")) {
+           $product->relatedProducts()->sync($attributes['related_products']);
+        }
+
         $product->load([
             "category",
             "variants",
             "variants.attributes",
-            "variants.attributes.attribute"
+            "variants.attributes.attribute",
+            "relatedProducts"
         ]);
 
         return $product;
@@ -75,7 +80,6 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     {
         $product = $this->find($id);
 
-        // آپدیت اطلاعات محصول
         $product->update([
             'title_fa' => $attributes['title_fa'],
             'title_en' => $attributes['title_en'],
@@ -84,7 +88,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
             'base_price' => $attributes['base_price'],
         ]);
 
-        $variantIds = []; // برای نگه‌داشتن واریانت‌هایی که باید باقی بمانند
+        $variantIds = [];
         foreach ($attributes['variants'] as $variantData) {
             if (isset($variantData['id'])) {
                 $variant = $product->variants()->findOrFail($variantData['id']);
@@ -110,11 +114,16 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
         $product->variants()->whereNotIn('id', $variantIds)->delete();
 
+        if (Arr::has($attributes, "related_products")) {
+            $product->relatedProducts()->sync($attributes['related_products']);
+        }
+
         $product->load([
             "category",
             "variants",
             "variants.attributes",
-            "variants.attributes.attribute"
+            "variants.attributes.attribute",
+            "relatedProducts"
         ]);
 
         return $product;
@@ -127,6 +136,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
             $variant->attributes()->detach();
             $variant->delete();
         });
+        $product->relatedProducts()->detach();
 
         return $product->delete();
     }
