@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\OrderStatusEnum;
 use App\Services\Searchable\SearchableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -16,6 +17,10 @@ class Order extends Model
 
     protected $fillable = [
         'user_id', 'total_price', 'status', 'address_id',
+    ];
+
+    protected $casts = [
+        'status' => OrderStatusEnum::class
     ];
 
     public static function getTableName(): string
