@@ -13,7 +13,8 @@ use App\Http\Controllers\Admin\Product\Assign\StoreProductDetail;
 use App\Http\Controllers\Admin\ProductReview\DestroyProductReview;
 use App\Http\Controllers\Admin\ProductReview\IndexProductReview;
 use App\Http\Controllers\Admin\ProductReview\ShowProductReview;
-use App\Http\Controllers\Agent\Product\IndexProduct;
+use App\Http\Controllers\Agent\Product\MyProduct;
+use App\Http\Controllers\Agent\Product\TransferProduct;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -56,7 +57,6 @@ Route::namespace('App\Http\Controllers\Admin')
         Route::namespace('Product')->group(function () {
             Route::handler('products');
             Route::post('/products/assign', StoreProductDetail::class);
-//            Route::get('transfer', StoreProductDetail::class);
         });
 
         Route::namespace('ProductReview')->group(function () {
@@ -95,6 +95,7 @@ Route::namespace('App\Http\Controllers\Agent')
     ->group(function () {
 
         Route::namespace('Product')->group(callback: function () {
-            Route::get('my-products', IndexProduct::class);
+            Route::get('my-products', MyProduct::class);
+            Route::patch('my-products/transfer', TransferProduct::class);
         });
     });

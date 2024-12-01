@@ -52,4 +52,19 @@ class ProductDetailRepository extends BaseRepository implements ProductDetailRep
             ->filtered()
             ->paginate();
     }
+
+    public function TransferOwner(array $data): ?ProductDetail
+    {
+        $record = ProductDetail::query()->where('id', $data['id'])->first();
+
+        DB::transaction(function () use ($record, $data) {
+            $record->update([
+                'owner_id' => $data['owner_id']
+            ]);
+
+            $record->owners()->attach($data['owner_id'], ['transfer_date' => now()]);
+        });
+
+        return $record;
+    }
 }

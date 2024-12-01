@@ -9,7 +9,7 @@ use App\Http\Resources\ProductDetailResource;
 use App\Utilities\ApiResponse;
 use Illuminate\Http\JsonResponse;
 
-class IndexProduct extends Controller
+class MyProduct extends Controller
 {
     public function __invoke(AgentRepositoryInterface $agentRepository): JsonResponse
     {
