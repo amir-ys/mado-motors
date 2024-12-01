@@ -10,6 +10,7 @@ use App\Contracts\CommentRepositoryInterface;
 use App\Contracts\OrderItemRepositoryInterface;
 use App\Contracts\OrderRepositoryInterface;
 use App\Contracts\ProductCategoryRepositoryInterface;
+use App\Contracts\ProductDetailRepositoryInterface;
 use App\Contracts\ProductRepositoryInterface;
 use App\Contracts\ProductReviewRepositoryInterface;
 use App\Contracts\ReviewPointRepositoryInterface;
@@ -23,6 +24,7 @@ use App\Repositories\CommentRepository;
 use App\Repositories\OrderItemRepository;
 use App\Repositories\OrderRepository;
 use App\Repositories\ProductCategoryRepository;
+use App\Repositories\ProductDetailRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\ProductReviewRepository;
 use App\Repositories\ReviewPointRepository;
@@ -46,5 +48,6 @@ class RepositoryServiceProvider extends ServiceProvider
         ProductReviewRepositoryInterface::class => ProductReviewRepository::class,
         OrderRepositoryInterface::class => OrderRepository::class,
         OrderItemRepositoryInterface::class => OrderItemRepository::class,
+        ProductDetailRepositoryInterface::class => ProductDetailRepository::class,
     ];
 }

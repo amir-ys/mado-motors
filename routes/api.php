@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Order\DestroyOrder;
 use App\Http\Controllers\Admin\Order\IndexOrder;
 use App\Http\Controllers\Admin\Order\ShowOrder;
 use App\Http\Controllers\Admin\Order\UpdateOrder;
+use App\Http\Controllers\Admin\Product\Assign\StoreProductDetail;
 use App\Http\Controllers\Admin\ProductReview\DestroyProductReview;
 use App\Http\Controllers\Admin\ProductReview\IndexProductReview;
 use App\Http\Controllers\Admin\ProductReview\ShowProductReview;
@@ -53,6 +54,8 @@ Route::namespace('App\Http\Controllers\Admin')
 
         Route::namespace('Product')->group(function () {
             Route::handler('products');
+            Route::post('/products/assign', StoreProductDetail::class);
+//            Route::get('transfer', StoreProductDetail::class);
         });
 
         Route::namespace('ProductReview')->group(function () {
@@ -82,5 +85,4 @@ Route::namespace('App\Http\Controllers\Admin')
             Route::delete('orders/{order}', DestroyOrder::class);
             Route::put('orders/{order}', UpdateOrder::class);
         });
-
     });

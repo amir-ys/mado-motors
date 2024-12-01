@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Agent;
 use App\Models\Order;
-use App\Models\Payment;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +21,6 @@ class ProductDetailFactory extends Factory
     {
         return [
             'order_id' => Order::factory(),
-            'payment_id' => Payment::factory(),
             'owner_id' => User::factory(),
             'agent_id' => Agent::factory(),
             'chassis_number' => $this->faker->word,

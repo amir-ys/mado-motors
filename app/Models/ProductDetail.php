@@ -15,7 +15,7 @@ class ProductDetail extends Model
     protected array $searchable = [];
 
     protected $fillable = [
-        'order_id', 'payment_id', 'owner_id', 'agent_id', 'chassis_number',
+        'order_id', 'owner_id', 'agent_id', 'chassis_number',
         'engine_number', 'plaque_number', 'year_of_production',
     ];
 
@@ -29,11 +29,6 @@ class ProductDetail extends Model
         return $this->belongsTo(Order::class);
     }
 
-    public function payment(): BelongsTo
-    {
-        return $this->belongsTo(Payment::class);
-    }
-
     public function owner(): BelongsTo
     {
         return $this->belongsTo(User::class, 'owner_id');
@@ -42,5 +37,12 @@ class ProductDetail extends Model
     public function agent(): BelongsTo
     {
         return $this->belongsTo(Agent::class, 'agent_id');
+    }
+
+    public function owners()
+    {
+        return $this->belongsToMany(User::class, 'product_detail_owner')
+            ->withPivot('transfer_date')
+            ->withTimestamps();
     }
 }
