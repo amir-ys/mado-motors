@@ -10,8 +10,8 @@ class OrderItemResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'product_id' => ProductResource::make($this->whenLoaded('product')),
-            'product_variant_id' => ProductVariantResource::make($this->whenLoaded('productVariant')),
+            'product' => ProductResource::make($this->whenLoaded('product')),
+            'product_variant' => ProductVariantResource::make($this->whenLoaded('productVariant')),
             'order' => OrderResource::make($this->whenLoaded('order')),
             'quantity' => $this->quantity,
             'price' => $this->price,

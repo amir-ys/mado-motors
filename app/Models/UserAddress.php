@@ -12,6 +12,8 @@ class UserAddress extends Model
 {
     use  BasicModel, SearchableTrait, HasFactory, SoftDeletes;
 
+    protected $with = ['user', 'city'];
+
     public static function getTableName(): string
     {
         return 'user_addresses';

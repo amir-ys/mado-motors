@@ -5,6 +5,10 @@ use App\Http\Controllers\Admin\Cart\IndexCartItem;
 use App\Http\Controllers\Admin\Comment\ChangeCommentStatus;
 use App\Http\Controllers\Admin\Comment\IndexComment;
 use App\Http\Controllers\Admin\Comment\ShowComment;
+use App\Http\Controllers\Admin\Order\DestroyOrder;
+use App\Http\Controllers\Admin\Order\IndexOrder;
+use App\Http\Controllers\Admin\Order\ShowOrder;
+use App\Http\Controllers\Admin\Order\UpdateOrder;
 use App\Http\Controllers\Admin\ProductReview\DestroyProductReview;
 use App\Http\Controllers\Admin\ProductReview\IndexProductReview;
 use App\Http\Controllers\Admin\ProductReview\ShowProductReview;
@@ -25,11 +29,11 @@ Route::namespace('App\Http\Controllers\Admin')
     ->middleware('auth:api')
     ->group(function () {
 
-        Route::namespace( 'Media' )->group( function () {
-            Route::post( 'media' , 'StoreMedia' );
-            Route::post( 'file' , 'StoreMedia@store' );
-            Route::delete( 'media/{media}' , 'DestroyMedia' );
-        } );
+        Route::namespace('Media')->group(function () {
+            Route::post('media', 'StoreMedia');
+            Route::post('file', 'StoreMedia@store');
+            Route::delete('media/{media}', 'DestroyMedia');
+        });
 
         Route::namespace('User')->group(function () {
             Route::handler('users');
@@ -71,4 +75,12 @@ Route::namespace('App\Http\Controllers\Admin')
         Route::namespace('ReviewPoint')->group(function () {
             Route::handler('review-points');
         });
+
+        Route::namespace('Order')->group(callback: function () {
+            Route::get('orders', IndexOrder::class);
+            Route::get('orders/{order}', ShowOrder::class);
+            Route::delete('orders/{order}', DestroyOrder::class);
+            Route::put('orders/{order}', UpdateOrder::class);
+        });
+
     });

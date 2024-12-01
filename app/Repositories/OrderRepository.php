@@ -11,4 +11,11 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
     {
         return Order::class;
     }
+
+    public function orderDetails(int $id)
+    {
+        return $this->with(
+            ['user', 'address', 'items', 'items.product', 'items.productVariant']
+        )->findOrFail($id);
+    }
 }

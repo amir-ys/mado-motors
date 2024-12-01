@@ -12,6 +12,8 @@ class City extends Model
 {
     use  BasicModel, SearchableTrait, HasFactory;
 
+    protected $with = ['province'];
+
     public static function getTableName(): string
     {
         return 'cities';

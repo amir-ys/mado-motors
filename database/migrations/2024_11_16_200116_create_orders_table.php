@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->integer('total_price');
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->default(\App\Enums\OrderStatusEnum::PENDING);
             $table->foreignId('address_id')
                 ->constrained('user_addresses')
                 ->cascadeOnDelete();
