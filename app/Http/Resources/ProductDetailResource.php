@@ -13,6 +13,7 @@ class ProductDetailResource extends JsonResource
             'order' => OrderResource::make($this->whenLoaded('order')),
             'owner' => UserResource::make($this->whenLoaded('owner')),
             'agent' => AgentResource::make($this->whenLoaded('agent')),
+            'product' => ProductResource::make($this->whenLoaded('product')),
             'chassis_number' => $this->chassis_number,
             'engine_number' => $this->engine_number,
             'plaque_number' => $this->plaque_number,

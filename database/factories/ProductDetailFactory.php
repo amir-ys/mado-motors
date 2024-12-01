@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Agent;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -23,6 +24,7 @@ class ProductDetailFactory extends Factory
             'order_id' => Order::factory(),
             'owner_id' => User::factory(),
             'agent_id' => Agent::factory(),
+            'product_id' => Product::factory(),
             'chassis_number' => $this->faker->word,
             'engine_number' => $this->faker->word,
             'plaque_number' => $this->faker->optional()->word,

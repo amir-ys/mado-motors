@@ -26,7 +26,7 @@ class ProductDetailRepository extends BaseRepository implements ProductDetailRep
             throw new NotFoundHttpException('item not save');
         }
 
-        $detail->load(['order', 'owner', 'agent']);
+        $detail->load(['order', 'owner', 'agent', 'product']);
 
         return $detail;
     }
@@ -42,5 +42,14 @@ class ProductDetailRepository extends BaseRepository implements ProductDetailRep
             return true;
         }
         return false;
+    }
+
+    public function getByAgentId($agentId)
+    {
+        return ProductDetail::query()
+            ->where('agent_id', $agentId)
+            ->with(['order', 'owner', 'agent', 'product'])
+            ->filtered()
+            ->paginate();
     }
 }

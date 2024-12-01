@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Product\Assign\StoreProductDetail;
 use App\Http\Controllers\Admin\ProductReview\DestroyProductReview;
 use App\Http\Controllers\Admin\ProductReview\IndexProductReview;
 use App\Http\Controllers\Admin\ProductReview\ShowProductReview;
+use App\Http\Controllers\Agent\Product\IndexProduct;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -84,5 +85,16 @@ Route::namespace('App\Http\Controllers\Admin')
             Route::get('orders/{order}', ShowOrder::class);
             Route::delete('orders/{order}', DestroyOrder::class);
             Route::put('orders/{order}', UpdateOrder::class);
+        });
+    });
+
+
+Route::namespace('App\Http\Controllers\Agent')
+    ->middleware('auth:api')
+    ->prefix('agent')
+    ->group(function () {
+
+        Route::namespace('Product')->group(callback: function () {
+            Route::get('my-products', IndexProduct::class);
         });
     });

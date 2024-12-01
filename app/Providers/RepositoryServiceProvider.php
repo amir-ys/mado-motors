@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Contracts\AgentRepositoryInterface;
 use App\Contracts\AttributeRepositoryInterface;
 use App\Contracts\AttributeValueRepositoryInterface;
 use App\Contracts\CartItemRepositoryInterface;
@@ -16,6 +17,7 @@ use App\Contracts\ProductReviewRepositoryInterface;
 use App\Contracts\ReviewPointRepositoryInterface;
 use App\Contracts\UserAddressRepositoryInterface;
 use App\Contracts\UserRepositoryInterface;
+use App\Repositories\AgentRepository;
 use App\Repositories\AttributeRepository;
 use App\Repositories\AttributeValueRepository;
 use App\Repositories\CartItemRepository;
@@ -49,5 +51,6 @@ class RepositoryServiceProvider extends ServiceProvider
         OrderRepositoryInterface::class => OrderRepository::class,
         OrderItemRepositoryInterface::class => OrderItemRepository::class,
         ProductDetailRepositoryInterface::class => ProductDetailRepository::class,
+        AgentRepositoryInterface::class => AgentRepository::class,
     ];
 }
