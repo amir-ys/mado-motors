@@ -21,7 +21,6 @@ class ProductReviewResource extends JsonResource
             'points' => ReviewPointResource::collection($this->whenLoaded('points')),
             'text' => $this->text,
             'status' => $this->status,
-            'updated_at' => $this->updated_at,
             'created_at' => $this->created_at,
         ];
     }

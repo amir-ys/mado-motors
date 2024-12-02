@@ -10,7 +10,7 @@ class ReviewPointResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'product_id' => ProductResource::make($this->whenLoaded('product')),
+            'product' => ProductResource::make($this->whenLoaded('product')),
             'type' => $this->type,
             'text' => $this->text,
             'created_at' => $this->created_at,

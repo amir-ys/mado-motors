@@ -43,8 +43,8 @@ class ProductReview extends Model
         return $this->belongsToMany(
             ReviewPoint::class,
             'product_review_point',
+            'product_review_id',
             'point_id',
-            'product_review_id'
         )->withTimestamps();
     }
 }

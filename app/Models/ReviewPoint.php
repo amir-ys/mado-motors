@@ -17,7 +17,9 @@ class ReviewPoint extends Model
         'product_id', 'type', 'text',
     ];
 
-    protected array $searchable = [];
+    protected array $searchable = [
+        'type'
+    ];
 
     protected $casts = [
         'type' => ReviewPointTypeEnum::class

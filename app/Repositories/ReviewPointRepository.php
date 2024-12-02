@@ -11,4 +11,13 @@ class ReviewPointRepository extends BaseRepository implements ReviewPointReposit
     {
         return ReviewPoint::class;
     }
+
+    public function getDefault()
+    {
+        return $this->scopeQuery(function ($q) {
+            return $q->whereNull('product_id');
+        })
+            ->filtered()
+            ->paginate();
+    }
 }
