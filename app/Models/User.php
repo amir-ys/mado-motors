@@ -81,7 +81,7 @@ class User extends Authenticatable
 
     public function mainAddress(): BelongsTo
     {
-        return $this->belongsTo(UserAddress::class);
+        return $this->belongsTo(UserAddress::class , 'main_address_id');
     }
 
     public function productDetails()

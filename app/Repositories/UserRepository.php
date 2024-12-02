@@ -37,6 +37,18 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         return $user;
     }
 
+
+    public function updateProfile(array $attributes, $id)
+    {
+        $user = $this->find($id);
+        $user->fill($attributes);
+        $user->save();
+
+        $user->load(['mainAddress']);
+
+        return $user;
+    }
+
     public function findByMobile($mobile)
     {
         return $this->whereMobile($mobile)->firstOrFail();

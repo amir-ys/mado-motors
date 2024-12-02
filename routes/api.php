@@ -19,9 +19,9 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\User\Product\MyProduct as UserMyProduct;
 use App\Http\Controllers\User\Product\ProductDetail;
-use App\Http\Controllers\User\Product\TransferProduct as UserTransferProduct;
 use App\Http\Controllers\User\ProductReview\IndexDefaultReviewPoint;
 use App\Http\Controllers\User\ProductReview\StoreProductReview;
+use App\Http\Controllers\User\User\UpdateUser;
 use Illuminate\Support\Facades\Route;
 
 Route::namespace('App\Http\Controllers\Admin')
@@ -118,7 +118,11 @@ Route::namespace('App\Http\Controllers\User')
 
         Route::namespace('Product')->group(callback: function () {
             Route::get('my-products', UserMyProduct::class);
-            Route::get('product-details/{productDetail}', ProductDetail::class);
-            Route::patch('my-products/transfer', UserTransferProduct::class);
+            Route::get('my-product/details/{productDetail}', ProductDetail::class);
+//            Route::patch('my-products/transfer', UserTransferProduct::class);
+        });
+
+        Route::namespace('User')->group(callback: function () {
+            Route::patch('my-profile', UpdateUser::class);
         });
     });

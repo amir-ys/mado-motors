@@ -12,6 +12,10 @@ class UserAddress extends Model
 {
     use  BasicModel, SearchableTrait, HasFactory, SoftDeletes;
 
+    protected $fillable = [
+        'user_id', 'city_id', 'address', 'postal_code', 'latitude', 'longitude',
+    ];
+
     protected $with = ['user', 'city'];
 
     public static function getTableName(): string

@@ -32,7 +32,9 @@ class UpdateUserRequest extends FormRequest
                 'required',
                 'string',
                 'regex:/^09[0-9]{9}$/',
-                Rule::unique('users', 'mobile')->whereNull('deleted_at')
+                Rule::unique('users', 'mobile')
+                    ->ignore($this->route()->parameter('user'))
+                    ->whereNull('deleted_at')
             ],
             #todo add national code validator
             'national_code' => [
@@ -40,6 +42,7 @@ class UpdateUserRequest extends FormRequest
                 'digits:10',
                 Rule::unique(User::getTableName(), 'national_code')
                     ->ignore($this->route()->parameter('user'))
+                    ->whereNull('deleted_at')
             ],
             'phone' => 'nullable',
             'email' => [
@@ -47,6 +50,7 @@ class UpdateUserRequest extends FormRequest
                 'email',
                 Rule::unique(User::getTableName(), 'email')
                     ->ignore($this->route()->parameter('user'))
+                    ->whereNull('deleted_at')
             ],
             'password' => 'required|confirmed|min:6',
         ];
