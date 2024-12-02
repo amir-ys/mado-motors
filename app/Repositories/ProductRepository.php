@@ -7,6 +7,7 @@ use App\Models\Product;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 class ProductRepository extends BaseRepository implements ProductRepositoryInterface
 {
@@ -42,11 +43,12 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         return $product;
     }
 
+    /**
+     * @throws ValidatorException
+     */
     public function store($attributes): Model|Builder
     {
-        #todo fill creator_id
-        $attributes = Arr::add($attributes, 'creator_id', 10);
-        $product = $this->create(Arr::except($attributes, ["variants" , 'related_products']));
+        $product = $this->create(Arr::except($attributes, ["variants", 'related_products']));
 
         #todo store media
 //        MediaHelper::storeMediaFor($product);
@@ -62,7 +64,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         }
 
         if (Arr::has($attributes, "related_products")) {
-           $product->relatedProducts()->sync($attributes['related_products']);
+            $product->relatedProducts()->sync($attributes['related_products']);
         }
 
         $product->load([

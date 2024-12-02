@@ -42,7 +42,7 @@ class CreateProductRequest extends FormRequest
             'variants.*.attributes' => ['required', 'array', 'min:1'],
             'variants.*.attributes.*.attribute_value_id' => ['required', 'exists:attribute_values,id'],
             'related_products' => ['array'],
-            'related_products.*' => ['required' , Rule::exists(Product::getTableName(), 'id')]
+            'related_products.*' => ['required', Rule::exists(Product::getTableName(), 'id')]
         ];
     }
 }

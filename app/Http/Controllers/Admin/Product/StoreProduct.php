@@ -13,6 +13,8 @@ class StoreProduct extends Controller
 {
     public function __invoke(CreateProductRequest $createProductRequest): JsonResponse
     {
+        $data  = $createProductRequest->validated();
+        $data['creator_id'] = auth()->id();
         return ApiResponse::created(
             ProductResource::make(
                 app(ProductRepositoryInterface::class)->store(

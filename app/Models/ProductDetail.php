@@ -46,6 +46,7 @@ class ProductDetail extends Model
             ->withPivot('transfer_date')
             ->withTimestamps();
     }
+
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);

@@ -14,7 +14,7 @@ class DestroyUser extends Controller
     {
         app(UserRepositoryInterface::class)->destroy($id);
 
-        ApiResponse::success(
+        return ApiResponse::success(
             'user deleted successfully'
         );
     }

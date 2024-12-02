@@ -27,7 +27,6 @@ trait BasicModel
 
     public function attributeExists($attr): bool
     {
-
         return array_key_exists($attr, $this->attributes);
     }
 

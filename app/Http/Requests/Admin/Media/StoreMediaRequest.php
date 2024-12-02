@@ -26,7 +26,7 @@ class StoreMediaRequest extends FormRequest
         return [
             'batch_id' => 'required|string|size:50',
             'file' => 'required_without:url|mimes:jpeg,jpg,bmp,png,webp|max:2048',
-            'url'=>'required_without:file',
+            'url' => 'required_without:file',
             'model_name' => 'required|string',
             'collection_name' => 'required|string',
             'crop' => 'nullable|array',

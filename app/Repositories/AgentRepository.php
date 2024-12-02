@@ -15,7 +15,7 @@ class AgentRepository extends BaseRepository implements AgentRepositoryInterface
     public function findByUserId($id)
     {
         return $this->findWhere([
-            'user_id'=>$id
+            'user_id' => $id
         ])->first();
     }
 }
