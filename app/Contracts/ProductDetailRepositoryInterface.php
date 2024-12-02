@@ -10,5 +10,7 @@ interface ProductDetailRepositoryInterface extends BaseRepositoryInterface
 
     public function getByAgentId($agentId);
 
+    public function getByUserId($userId);
+
     public function TransferOwner(array $data);
 }

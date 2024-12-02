@@ -17,6 +17,9 @@ use App\Http\Controllers\Agent\Product\MyProduct;
 use App\Http\Controllers\Agent\Product\TransferProduct;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\User\Product\MyProduct as UserMyProduct;
+use App\Http\Controllers\User\Product\ProductDetail;
+use App\Http\Controllers\User\Product\TransferProduct as UserTransferProduct;
 use App\Http\Controllers\User\ProductReview\IndexDefaultReviewPoint;
 use App\Http\Controllers\User\ProductReview\StoreProductReview;
 use Illuminate\Support\Facades\Route;
@@ -106,10 +109,16 @@ Route::namespace('App\Http\Controllers\Agent')
 Route::namespace('App\Http\Controllers\User')
     ->middleware('auth:api')
     ->prefix('user')
-    ->group(function () {
+    ->group(callback: function () {
 
         Route::namespace('ProductReview')->group(callback: function () {
             Route::post('/product-reviews', StoreProductReview::class);
             Route::get('/review-points/default', IndexDefaultReviewPoint::class);
+        });
+
+        Route::namespace('Product')->group(callback: function () {
+            Route::get('my-products', UserMyProduct::class);
+            Route::get('product-details/{productDetail}', ProductDetail::class);
+            Route::patch('my-products/transfer', UserTransferProduct::class);
         });
     });

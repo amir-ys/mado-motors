@@ -53,6 +53,15 @@ class ProductDetailRepository extends BaseRepository implements ProductDetailRep
             ->paginate();
     }
 
+    public function getByUserId($userId)
+    {
+        return ProductDetail::query()
+            ->where('owner_id', $userId)
+            ->with(['order', 'owner', 'agent', 'product'])
+            ->filtered()
+            ->paginate();
+    }
+
     public function TransferOwner(array $data): ?ProductDetail
     {
         $record = ProductDetail::query()->where('id', $data['id'])->first();
