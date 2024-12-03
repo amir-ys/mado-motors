@@ -17,6 +17,8 @@ use App\Http\Controllers\Agent\Product\MyProduct;
 use App\Http\Controllers\Agent\Product\TransferProduct;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\User\Cart\DestroyCart;
+use App\Http\Controllers\User\Cart\IndexCart as UserIndexCart;
 use App\Http\Controllers\User\ContactUS\IndexAgents;
 use App\Http\Controllers\User\ContactUS\IndexContactUS;
 use App\Http\Controllers\User\Product\MyProduct as UserMyProduct;
@@ -136,5 +138,10 @@ Route::namespace('App\Http\Controllers\User')
         Route::namespace('ContactUS')->group(callback: function () {
             Route::get('contact-us', IndexContactUS::class);
             Route::get('agents', IndexAgents::class);
+        });
+
+        Route::namespace('Cart')->group(callback: function () {
+            Route::get('/carts', UserIndexCart::class);
+            Route::delete('/carts/{cart}', DestroyCart::class);
         });
     });

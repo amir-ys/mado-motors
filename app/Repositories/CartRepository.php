@@ -11,4 +11,12 @@ class CartRepository extends BaseRepository implements CartRepositoryInterface
     {
         return Cart::class;
     }
+
+    public function getByUserId($userId)
+    {
+        return $this->scopeQuery(function ($q) use ($userId) {
+            return $q->where('user_id', $userId);
+        })
+            ->paginate();
+    }
 }
