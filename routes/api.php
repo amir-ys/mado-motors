@@ -19,7 +19,9 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\User\Product\MyProduct as UserMyProduct;
 use App\Http\Controllers\User\Product\ProductDetail;
+use App\Http\Controllers\User\ProductReview\DestroyProductReview as UserDestroyProductReview;
 use App\Http\Controllers\User\ProductReview\IndexDefaultReviewPoint;
+use App\Http\Controllers\User\ProductReview\IndexProductReview as UserIndexProductReview;
 use App\Http\Controllers\User\ProductReview\StoreProductReview;
 use App\Http\Controllers\User\User\UpdateUser;
 use Illuminate\Support\Facades\Route;
@@ -114,7 +116,8 @@ Route::namespace('App\Http\Controllers\User')
         Route::namespace('ProductReview')->group(callback: function () {
             Route::post('/product-reviews', StoreProductReview::class);
             Route::get('/review-points/default', IndexDefaultReviewPoint::class);
-            Route::get('/product-reviews', App\Http\Controllers\User\ProductReview\IndexProductReview::class);
+            Route::get('/product-reviews', UserIndexProductReview::class);
+            Route::delete('/product-reviews/{productReview}', UserDestroyProductReview::class);
         });
 
         Route::namespace('Product')->group(callback: function () {

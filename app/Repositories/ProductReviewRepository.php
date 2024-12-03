@@ -50,4 +50,14 @@ class ProductReviewRepository extends BaseRepository implements ProductReviewRep
             ])
             ->paginate();
     }
+
+    public function deleteByIdAndUserId($id, $userId): ?bool
+    {
+        $result = ProductReview::query()
+            ->where('user_id', $userId)
+            ->where('id', $id)
+            ->firstOrFail();
+
+        return $result->delete();
+    }
 }
