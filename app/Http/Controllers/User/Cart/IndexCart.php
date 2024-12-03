@@ -15,7 +15,7 @@ class IndexCart extends Controller
         return ApiResponse::success(
             CartResource::collection(
                 app(CartRepositoryInterface::class)
-                    ->with(['user', 'items'])
+                    ->with(['user', 'items' , 'items.product' , 'items.productVariant'])
                     ->getByUserId(
                         auth()->id()
                     )
