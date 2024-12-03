@@ -114,12 +114,12 @@ Route::namespace('App\Http\Controllers\User')
         Route::namespace('ProductReview')->group(callback: function () {
             Route::post('/product-reviews', StoreProductReview::class);
             Route::get('/review-points/default', IndexDefaultReviewPoint::class);
+            Route::get('/product-reviews', App\Http\Controllers\User\ProductReview\IndexProductReview::class);
         });
 
         Route::namespace('Product')->group(callback: function () {
             Route::get('my-products', UserMyProduct::class);
             Route::get('my-product/details/{productDetail}', ProductDetail::class);
-//            Route::patch('my-products/transfer', UserTransferProduct::class);
         });
 
         Route::namespace('User')->group(callback: function () {

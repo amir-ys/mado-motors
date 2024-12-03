@@ -19,6 +19,8 @@ class ProductReviewResource extends JsonResource
             'product' => ProductResource::make($this->whenLoaded('product')),
             'user' => UserResource::make($this->whenLoaded('user')),
             'points' => ReviewPointResource::collection($this->whenLoaded('points')),
+            'negative_points_count' => $this->whenNotNull($this->negative_points_count),
+            'positive_points_count' => $this->whenNotNull($this->positive_points_count),
             'text' => $this->text,
             'status' => $this->status,
             'created_at' => $this->created_at,
