@@ -23,6 +23,7 @@ use App\Http\Controllers\User\ProductReview\DestroyProductReview as UserDestroyP
 use App\Http\Controllers\User\ProductReview\IndexDefaultReviewPoint;
 use App\Http\Controllers\User\ProductReview\IndexProductReview as UserIndexProductReview;
 use App\Http\Controllers\User\ProductReview\StoreProductReview;
+use App\Http\Controllers\User\ProductReview\UpdateProductReview;
 use App\Http\Controllers\User\User\UpdateUser;
 use Illuminate\Support\Facades\Route;
 
@@ -115,6 +116,7 @@ Route::namespace('App\Http\Controllers\User')
 
         Route::namespace('ProductReview')->group(callback: function () {
             Route::post('/product-reviews', StoreProductReview::class);
+            Route::patch('/product-reviews/{productReview}', UpdateProductReview::class)->scopeBindings();
             Route::get('/review-points/default', IndexDefaultReviewPoint::class);
             Route::get('/product-reviews', UserIndexProductReview::class);
             Route::delete('/product-reviews/{productReview}', UserDestroyProductReview::class);

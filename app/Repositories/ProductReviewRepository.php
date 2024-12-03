@@ -8,6 +8,7 @@ use App\Enums\ReviewPointTypeEnum;
 use App\Models\ProductReview;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Prettus\Validator\Exceptions\ValidatorException;
 
 class ProductReviewRepository extends BaseRepository implements ProductReviewRepositoryInterface
@@ -32,6 +33,31 @@ class ProductReviewRepository extends BaseRepository implements ProductReviewRep
             'user',
             'points',
         ]);
+
+        return $productReview;
+    }
+
+    public function update(array $attributes, $id): mixed
+    {
+        $productReview = null;
+        DB::transaction(function () use (&$productReview, $attributes, $id) {
+            $data = Arr::except($attributes, 'review_points_ids');
+            $data['status'] = ProductReviewStatusEnum::PENDING;
+            $productReview = ProductReview::query()
+                ->where('id', $id)
+                ->first();
+
+            $productReview->update($data);
+            $productReview->points()->sync([]);
+            $productReview->points()->attach(array_values($attributes['review_points_ids']));
+
+            $productReview->load([
+                'product',
+                'user',
+                'points',
+            ]);
+
+        });
 
         return $productReview;
     }
