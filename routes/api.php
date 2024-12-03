@@ -17,6 +17,10 @@ use App\Http\Controllers\Agent\Product\MyProduct;
 use App\Http\Controllers\Agent\Product\TransferProduct;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\User\Address\DestroyAddress;
+use App\Http\Controllers\User\Address\IndexAddress;
+use App\Http\Controllers\User\Address\StoreAddress;
+use App\Http\Controllers\User\Address\UpdateAddress;
 use App\Http\Controllers\User\Cart\DestroyCart;
 use App\Http\Controllers\User\Cart\IndexCart as UserIndexCart;
 use App\Http\Controllers\User\ContactUS\IndexAgents;
@@ -28,7 +32,6 @@ use App\Http\Controllers\User\ProductReview\IndexDefaultReviewPoint;
 use App\Http\Controllers\User\ProductReview\IndexProductReview as UserIndexProductReview;
 use App\Http\Controllers\User\ProductReview\StoreProductReview;
 use App\Http\Controllers\User\ProductReview\UpdateProductReview;
-use App\Http\Controllers\User\User\IndexUserAddress;
 use App\Http\Controllers\User\User\UpdateUser;
 use Illuminate\Support\Facades\Route;
 
@@ -134,7 +137,13 @@ Route::namespace('App\Http\Controllers\User')
 
         Route::namespace('User')->group(callback: function () {
             Route::patch('my-profile', UpdateUser::class);
-            Route::get('addresses', IndexUserAddress::class);
+        });
+
+        Route::namespace('Address')->group(callback: function () {
+            Route::get('addresses', IndexAddress::class);
+            Route::post('addresses', StoreAddress::class);
+            Route::put('addresses/{address}', UpdateAddress::class);
+            Route::delete('addresses/{address}', DestroyAddress::class);
         });
 
         Route::namespace('ContactUS')->group(callback: function () {

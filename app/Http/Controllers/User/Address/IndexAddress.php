@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User\User;
+namespace App\Http\Controllers\User\Address;
 
 use App\Contracts\Repositories\UserAddressRepositoryInterface;
 use App\Http\Controllers\Controller;
@@ -8,7 +8,7 @@ use App\Http\Resources\UserAddressResource;
 use App\Utilities\ApiResponse;
 use Illuminate\Http\JsonResponse;
 
-class IndexUserAddress extends Controller
+class IndexAddress extends Controller
 {
 
     public function __invoke(): JsonResponse

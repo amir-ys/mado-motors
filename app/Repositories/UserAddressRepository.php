@@ -19,4 +19,14 @@ class UserAddressRepository extends BaseRepository implements UserAddressReposit
         })
             ->paginate();
     }
+
+    public function destroyByIdAndUserId($id, $userId): ?bool
+    {
+        $result = UserAddress::query()
+            ->where('id', $id)
+            ->where('user_id', $userId)
+            ->firstOrFail();
+
+        return $result->delete();
+    }
 }
