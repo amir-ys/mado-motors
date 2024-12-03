@@ -79,7 +79,7 @@ class AppServiceProvider extends ServiceProvider
         });
     }
 
-    private function bindFacades()
+    private function bindFacades(): void
     {
         $this->app->bind(
             'setting',

@@ -17,6 +17,7 @@ use App\Http\Controllers\Agent\Product\MyProduct;
 use App\Http\Controllers\Agent\Product\TransferProduct;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\User\ContactUS\IndexAgents;
 use App\Http\Controllers\User\ContactUS\IndexContactUS;
 use App\Http\Controllers\User\Product\MyProduct as UserMyProduct;
 use App\Http\Controllers\User\Product\ProductDetail;
@@ -134,5 +135,6 @@ Route::namespace('App\Http\Controllers\User')
 
         Route::namespace('ContactUS')->group(callback: function () {
             Route::get('contact-us', IndexContactUS::class);
+            Route::get('agents', IndexAgents::class);
         });
     });
