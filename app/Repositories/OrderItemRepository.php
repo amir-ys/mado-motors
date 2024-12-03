@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Contracts\OrderItemRepositoryInterface;
+use App\Contracts\Repositories\OrderItemRepositoryInterface;
 use App\Models\OrderItem;
 
 class OrderItemRepository extends BaseRepository implements OrderItemRepositoryInterface

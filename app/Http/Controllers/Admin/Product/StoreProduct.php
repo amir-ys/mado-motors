@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Product;
 
-use App\Contracts\ProductRepositoryInterface;
+use App\Contracts\Repositories\ProductRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Product\CreateProductRequest;
 use App\Http\Resources\ProductResource;

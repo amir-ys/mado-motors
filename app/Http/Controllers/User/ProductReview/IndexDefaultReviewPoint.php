@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\User\ProductReview;
 
-use App\Contracts\ReviewPointRepositoryInterface;
+use App\Contracts\Repositories\ReviewPointRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ReviewPointResource;
 use App\Utilities\ApiResponse;

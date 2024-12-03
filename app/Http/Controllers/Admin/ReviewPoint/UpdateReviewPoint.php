@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\ReviewPoint;
 
-use App\Contracts\ReviewPointRepositoryInterface;
+use App\Contracts\Repositories\ReviewPointRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ReviewPoint\UpdateReviewPointRequest;
 use App\Http\Resources\ReviewPointResource;

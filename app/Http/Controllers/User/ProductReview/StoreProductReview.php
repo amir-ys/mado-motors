@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\User\ProductReview;
 
-use App\Contracts\ProductReviewRepositoryInterface;
-use App\Contracts\ReviewPointRepositoryInterface;
+use App\Contracts\Repositories\ProductReviewRepositoryInterface;
+use App\Contracts\Repositories\ReviewPointRepositoryInterface;
 use App\Enums\ReviewPointTypeEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\ReviewPoint\StoreProductReviewRequest;

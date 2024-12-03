@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Agent\Product;
 
-use App\Contracts\AgentRepositoryInterface;
-use App\Contracts\ProductDetailRepositoryInterface;
+use App\Contracts\Repositories\AgentRepositoryInterface;
+use App\Contracts\Repositories\ProductDetailRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductDetailResource;
 use App\Utilities\ApiResponse;

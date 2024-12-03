@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Contracts\CartItemRepositoryInterface;
+use App\Contracts\Repositories\CartItemRepositoryInterface;
 use App\Models\CartItem;
 
 class CartItemRepository extends BaseRepository implements CartItemRepositoryInterface

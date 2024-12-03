@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\ProductReview;
 
-use App\Contracts\ProductReviewRepositoryInterface;
+use App\Contracts\Repositories\ProductReviewRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Utilities\ApiResponse;
 use Illuminate\Http\JsonResponse;

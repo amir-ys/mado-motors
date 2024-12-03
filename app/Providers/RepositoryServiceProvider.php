@@ -2,21 +2,21 @@
 
 namespace App\Providers;
 
-use App\Contracts\AgentRepositoryInterface;
-use App\Contracts\AttributeRepositoryInterface;
-use App\Contracts\AttributeValueRepositoryInterface;
-use App\Contracts\CartItemRepositoryInterface;
-use App\Contracts\CartRepositoryInterface;
-use App\Contracts\CommentRepositoryInterface;
-use App\Contracts\OrderItemRepositoryInterface;
-use App\Contracts\OrderRepositoryInterface;
-use App\Contracts\ProductCategoryRepositoryInterface;
-use App\Contracts\ProductDetailRepositoryInterface;
-use App\Contracts\ProductRepositoryInterface;
-use App\Contracts\ProductReviewRepositoryInterface;
-use App\Contracts\ReviewPointRepositoryInterface;
-use App\Contracts\UserAddressRepositoryInterface;
-use App\Contracts\UserRepositoryInterface;
+use App\Contracts\Repositories\AgentRepositoryInterface;
+use App\Contracts\Repositories\AttributeRepositoryInterface;
+use App\Contracts\Repositories\AttributeValueRepositoryInterface;
+use App\Contracts\Repositories\CartItemRepositoryInterface;
+use App\Contracts\Repositories\CartRepositoryInterface;
+use App\Contracts\Repositories\CommentRepositoryInterface;
+use App\Contracts\Repositories\OrderItemRepositoryInterface;
+use App\Contracts\Repositories\OrderRepositoryInterface;
+use App\Contracts\Repositories\ProductCategoryRepositoryInterface;
+use App\Contracts\Repositories\ProductDetailRepositoryInterface;
+use App\Contracts\Repositories\ProductRepositoryInterface;
+use App\Contracts\Repositories\ProductReviewRepositoryInterface;
+use App\Contracts\Repositories\ReviewPointRepositoryInterface;
+use App\Contracts\Repositories\UserAddressRepositoryInterface;
+use App\Contracts\Repositories\UserRepositoryInterface;
 use App\Repositories\AgentRepository;
 use App\Repositories\AttributeRepository;
 use App\Repositories\AttributeValueRepository;

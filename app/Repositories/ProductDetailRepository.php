@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Contracts\ProductDetailRepositoryInterface;
+use App\Contracts\Repositories\ProductDetailRepositoryInterface;
 use App\Models\ProductDetail;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;

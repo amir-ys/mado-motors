@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\User\Product;
 
-use App\Contracts\ProductDetailRepositoryInterface;
-use App\Contracts\UserRepositoryInterface;
+use App\Contracts\Repositories\ProductDetailRepositoryInterface;
+use App\Contracts\Repositories\UserRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Agent\Product\TransferProductDetailOwnerRequest;
 use App\Http\Resources\ProductDetailResource;

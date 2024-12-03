@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Contracts\ProductReviewRepositoryInterface;
+use App\Contracts\Repositories\ProductReviewRepositoryInterface;
 use App\Enums\ProductReviewStatusEnum;
 use App\Enums\ReviewPointTypeEnum;
 use App\Models\ProductReview;

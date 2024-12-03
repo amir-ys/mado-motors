@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\AttributeValue;
 
-use App\Contracts\AttributeValueRepositoryInterface;
+use App\Contracts\Repositories\AttributeValueRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Utilities\ApiResponse;
 use Illuminate\Http\JsonResponse;

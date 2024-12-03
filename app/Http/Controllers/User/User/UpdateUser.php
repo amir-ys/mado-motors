@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\User\User;
 
-use App\Contracts\UserAddressRepositoryInterface;
-use App\Contracts\UserRepositoryInterface;
+use App\Contracts\Repositories\UserAddressRepositoryInterface;
+use App\Contracts\Repositories\UserRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\User\UpdateUserRequest;
 use App\Http\Resources\UserResource;

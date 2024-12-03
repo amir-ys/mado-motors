@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Contracts\AgentRepositoryInterface;
+use App\Contracts\Repositories\AgentRepositoryInterface;
 use App\Models\Agent;
 
 class AgentRepository extends BaseRepository implements AgentRepositoryInterface

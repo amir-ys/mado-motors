@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Cart;
 
-use App\Contracts\CartItemRepositoryInterface;
+use App\Contracts\Repositories\CartItemRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CartItemResource;
 use App\Utilities\ApiResponse;

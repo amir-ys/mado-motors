@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Attribute;
 
-use App\Contracts\AttributeRepositoryInterface;
+use App\Contracts\Repositories\AttributeRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AttributeResource;
 use App\Utilities\ApiResponse;

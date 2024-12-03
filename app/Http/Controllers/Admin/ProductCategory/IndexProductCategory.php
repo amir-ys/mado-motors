@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\ProductCategory;
 
-use App\Contracts\ProductCategoryRepositoryInterface;
+use App\Contracts\Repositories\ProductCategoryRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductCategoryResource;
 use App\Utilities\ApiResponse;

@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Contracts;
+namespace App\Contracts\Repositories;
+
 interface CategoryRepositoryInterface extends BaseRepositoryInterface
 {
 }

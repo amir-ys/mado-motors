@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Comment;
 
-use App\Contracts\CommentRepositoryInterface;
+use App\Contracts\Repositories\CommentRepositoryInterface;
 use App\Enums\CommentStatusEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Comment\ChangeCommentStatusRequest;

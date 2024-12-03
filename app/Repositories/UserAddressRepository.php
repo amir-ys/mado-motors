@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Contracts\UserAddressRepositoryInterface;
+use App\Contracts\Repositories\UserAddressRepositoryInterface;
 use App\Models\UserAddress;
 
 class UserAddressRepository extends BaseRepository implements UserAddressRepositoryInterface

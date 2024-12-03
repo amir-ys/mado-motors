@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\AttributeValue;
 
-use App\Contracts\AttributeValueRepositoryInterface;
+use App\Contracts\Repositories\AttributeValueRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AttributeValue\UpdateAttributeValueRequest;
 use App\Http\Resources\AttributeValueResource;

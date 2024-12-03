@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Order;
 
-use App\Contracts\OrderRepositoryInterface;
+use App\Contracts\Repositories\OrderRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Order\UpdateOrderRequest;
 use App\Http\Resources\OrderResource;

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\User\Product;
 
-use App\Contracts\ProductDetailRepositoryInterface;
+use App\Contracts\Repositories\ProductDetailRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductDetailResource;
 use App\Utilities\ApiResponse;
