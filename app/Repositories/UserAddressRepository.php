@@ -11,4 +11,12 @@ class UserAddressRepository extends BaseRepository implements UserAddressReposit
     {
         return UserAddress::class;
     }
+
+    public function getByUserId($userId)
+    {
+        return $this->scopeQuery(function ($q) use ($userId) {
+            return $q->where('user_id', $userId);
+        })
+            ->paginate();
+    }
 }
