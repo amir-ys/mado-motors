@@ -17,6 +17,7 @@ use App\Http\Controllers\Agent\Product\MyProduct;
 use App\Http\Controllers\Agent\Product\TransferProduct;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\User\ContactUS\IndexContactUS;
 use App\Http\Controllers\User\Product\MyProduct as UserMyProduct;
 use App\Http\Controllers\User\Product\ProductDetail;
 use App\Http\Controllers\User\ProductReview\DestroyProductReview as UserDestroyProductReview;
@@ -129,5 +130,9 @@ Route::namespace('App\Http\Controllers\User')
 
         Route::namespace('User')->group(callback: function () {
             Route::patch('my-profile', UpdateUser::class);
+        });
+
+        Route::namespace('ContactUS')->group(callback: function () {
+            Route::get('contact-us', IndexContactUS::class);
         });
     });

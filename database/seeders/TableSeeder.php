@@ -23,6 +23,7 @@ use App\Models\Setting;
 use App\Models\User;
 use App\Models\UserAddress;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 
 class TableSeeder extends Seeder
@@ -51,5 +52,21 @@ class TableSeeder extends Seeder
         Attribute::factory(5)->create();
         AttributeValue::factory(5)->create();
         ProductVariant::factory(20)->create();
+
+        $this->insertSetting();
+    }
+
+    private function insertSetting(): void
+    {
+        DB::table('settings')->insert([
+            ['key' => 'contact_us_phone', 'value' => '+1234567890', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'contact_us_email', 'value' => 'info@example.com', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'contact_us_instagram_link', 'value' => 'https://instagram.com/example', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'contact_us_linkedin_link', 'value' => 'https://linkedin.com/in/example', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'contact_us_head_office_address', 'value' => '123 Example Street, City, Country', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'contact_us_postal_code', 'value' => '123456', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'contact_us_latitude', 'value' => '37.7749', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'contact_us_longitude', 'value' => '-122.4194', 'created_at' => now(), 'updated_at' => now()],
+        ]);
     }
 }
