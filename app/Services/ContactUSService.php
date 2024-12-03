@@ -12,14 +12,18 @@ class ContactUSService implements ContactUSServiceInterface
     public function getContactUs(): array
     {
         return [
-            'phone' => SettingFacade::get(SettingKeyEnum::CONTACT_US_PHONE)?->value,
-            'email' => SettingFacade::get(SettingKeyEnum::CONTACT_US_EMAIL)?->value,
-            'instagram_link' => SettingFacade::get(SettingKeyEnum::CONTACT_US_INSTAGRAM_LINK)?->value,
-            'linkedin_link' => SettingFacade::get(SettingKeyEnum::CONTACT_US_LINKEDIN_LINK)?->value,
-            'head_office_address' => SettingFacade::get(SettingKeyEnum::CONTACT_US_HEAD_OFFICE_ADDRESS)?->value,
-            'postal_code' => SettingFacade::get(SettingKeyEnum::CONTACT_US_POSTAL_CODE)?->value,
-            'latitude' => SettingFacade::get(SettingKeyEnum::CONTACT_US_LATITUDE)?->value,
-            'longitude' => SettingFacade::get(SettingKeyEnum::CONTACT_US_LONGITUDE)?->value,
+            str_replace('contact_us_','',SettingKeyEnum::CONTACT_US_PHONE->value) => SettingFacade::get(SettingKeyEnum::CONTACT_US_PHONE)?->value,
+            str_replace('contact_us_','',SettingKeyEnum::CONTACT_US_EMAIL->value) => SettingFacade::get(SettingKeyEnum::CONTACT_US_EMAIL)?->value,
+            str_replace('contact_us_','',SettingKeyEnum::CONTACT_US_INSTAGRAM_LINK->value) => SettingFacade::get(SettingKeyEnum::CONTACT_US_INSTAGRAM_LINK)?->value,
+            str_replace('contact_us_','',SettingKeyEnum::CONTACT_US_LINKEDIN_LINK->value) => SettingFacade::get(SettingKeyEnum::CONTACT_US_LINKEDIN_LINK)?->value,
+            str_replace('contact_us_','',SettingKeyEnum::CONTACT_US_TELEGRAM_LINK->value) => SettingFacade::get(SettingKeyEnum::CONTACT_US_TELEGRAM_LINK)?->value,
+            str_replace('contact_us_','',SettingKeyEnum::CONTACT_US_WHATSAPP_LINK->value) => SettingFacade::get(SettingKeyEnum::CONTACT_US_WHATSAPP_LINK)?->value,
+            str_replace('contact_us_','',SettingKeyEnum::CONTACT_US_EITAA_LINK->value) => SettingFacade::get(SettingKeyEnum::CONTACT_US_EITAA_LINK)?->value,
+            str_replace('contact_us_','',SettingKeyEnum::CONTACT_US_HEAD_OFFICE_ADDRESS->value) => SettingFacade::get(SettingKeyEnum::CONTACT_US_HEAD_OFFICE_ADDRESS)?->value,
+            str_replace('contact_us_','',SettingKeyEnum::CONTACT_US_FACTORY_ADDRESS->value) => SettingFacade::get(SettingKeyEnum::CONTACT_US_FACTORY_ADDRESS)?->value,
+            str_replace('contact_us_','',SettingKeyEnum::CONTACT_US_POSTAL_CODE->value) => SettingFacade::get(SettingKeyEnum::CONTACT_US_POSTAL_CODE)?->value,
+            str_replace('contact_us_','',SettingKeyEnum::CONTACT_US_LATITUDE->value) => SettingFacade::get(SettingKeyEnum::CONTACT_US_LATITUDE)?->value,
+            str_replace('contact_us_','',SettingKeyEnum::CONTACT_US_LONGITUDE->value) => SettingFacade::get(SettingKeyEnum::CONTACT_US_LONGITUDE)?->value,
         ];
     }
 }

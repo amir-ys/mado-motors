@@ -58,12 +58,20 @@ class TableSeeder extends Seeder
 
     private function insertSetting(): void
     {
-        DB::table('settings')->insert([
+        if (app()->isProduction()) {
+            return;
+        }
+        DB::table(Setting::getTableName())->delete();
+        DB::table(Setting::getTableName())->insertOrIgnore([
             ['key' => 'contact_us_phone', 'value' => '+1234567890', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'contact_us_email', 'value' => 'info@example.com', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'contact_us_instagram_link', 'value' => 'https://instagram.com/example', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'contact_us_linkedin_link', 'value' => 'https://linkedin.com/in/example', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'contact_us_telegram_link', 'value' => 'https://telegram.com/example', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'contact_us_whatsapp_link', 'value' => 'https://whatsapp.com/example', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'contact_us_eitaa_link', 'value' => 'https://eitaa.com/example', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'contact_us_head_office_address', 'value' => '123 Example Street, City, Country', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'contact_us_factory_address', 'value' => '124 Example Street, City, Country', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'contact_us_postal_code', 'value' => '123456', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'contact_us_latitude', 'value' => '37.7749', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'contact_us_longitude', 'value' => '-122.4194', 'created_at' => now(), 'updated_at' => now()],
