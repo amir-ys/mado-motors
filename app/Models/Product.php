@@ -20,7 +20,7 @@ class Product extends Model implements HasMedia
     protected $fillable = [
         'title_fa', 'title_en', 'category_id', 'creator_id',
         'description', 'spod_id', 'original_price',
-        'payable_price', 'quantity',
+        'price', 'quantity',
     ];
 
     #todo fill searchable

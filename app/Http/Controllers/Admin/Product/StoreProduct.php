@@ -18,7 +18,7 @@ class StoreProduct extends Controller
         return ApiResponse::created(
             ProductResource::make(
                 app(ProductRepositoryInterface::class)->store(
-                    ($createProductRequest->validated())
+                   $data
                 )
             )
         );

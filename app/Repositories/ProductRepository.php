@@ -87,7 +87,9 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
             'title_en' => $attributes['title_en'],
             'description' => $attributes['description'] ?? null,
             'category_id' => $attributes['category_id'],
-            'base_price' => $attributes['base_price'],
+            'original_price' => $attributes['original_price'],
+            'price' => $attributes['price'],
+            "quantity" => $attributes['quantity'],
         ]);
 
         $variantIds = [];
@@ -96,13 +98,13 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
                 $variant = $product->variants()->findOrFail($variantData['id']);
                 $variant->update([
                     'original_price' => $variantData['original_price'],
-                    'payable_price' => $variantData['payable_price'],
+                    'price' => $variantData['price'],
                     'quantity' => $variantData['quantity'],
                 ]);
             } else {
                 $variant = $product->variants()->create([
                     'original_price' => $variantData['original_price'],
-                    'payable_price' => $variantData['payable_price'],
+                    'price' => $variantData['price'],
                     'quantity' => $variantData['quantity'],
                 ]);
             }

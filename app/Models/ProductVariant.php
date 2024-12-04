@@ -15,7 +15,7 @@ class ProductVariant extends Model
     protected $fillable = [
         'product_id',
         'original_price',
-        'payable_price',
+        'price',
         'quantity',
     ];
     protected array $searchable = [];

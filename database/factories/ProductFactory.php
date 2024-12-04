@@ -28,7 +28,7 @@ class ProductFactory extends Factory
             'description' => $this->faker->paragraph,
             'spod_id' => $this->faker->optional()->uuid,
             'original_price' => $this->faker->randomNumber(5, true),
-            'payable_price' => $this->faker->randomNumber(5, true),
+            'price' => $this->faker->randomNumber(5, true),
             'quantity' => $this->faker->numberBetween(1, 100),
         ];
     }

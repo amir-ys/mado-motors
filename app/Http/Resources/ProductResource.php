@@ -15,7 +15,7 @@ class ProductResource extends JsonResource
             'description' => $this->description,
             'spod_id' => $this->spod_id,
             'original_price' => $this->original_price,
-            'payable_price' => $this->payable_price,
+            'price' => $this->price,
             'quantity' => $this->quantity,
             'category' => ProductCategoryResource::make($this->whenLoaded('category')),
             'creator' => UserResource::make($this->whenLoaded('creator')),

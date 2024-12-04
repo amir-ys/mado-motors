@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->longText('description');
             $table->string('spod_id')->nullable();
             $table->integer('original_price')->nullable();
-            $table->integer('payable_price')->nullable();
+            $table->integer('price')->nullable();
             $table->integer('quantity')->nullable();
             $table->softDeletes();
             $table->timestamps();

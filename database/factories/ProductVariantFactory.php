@@ -23,7 +23,7 @@ class ProductVariantFactory extends Factory
         return [
             'product_id' => Product::factory(),
             'original_price' => $this->faker->numberBetween(1000, 99999),
-            'payable_price' => $this->faker->numberBetween(1000, 99999),
+            'price' => $this->faker->numberBetween(1000, 99999),
             'quantity' => $this->faker->numberBetween(1, 100),
         ];
     }
