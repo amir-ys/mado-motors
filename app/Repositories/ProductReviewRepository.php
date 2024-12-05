@@ -86,4 +86,16 @@ class ProductReviewRepository extends BaseRepository implements ProductReviewRep
 
         return $result->delete();
     }
+
+    public function changeStatus($id, ProductReviewStatusEnum $reviewStatusEnum)
+    {
+        $productReview = ProductReview::query()->findOrFail($id);
+
+        if ($productReview->status != $reviewStatusEnum) {
+            $productReview->status = $reviewStatusEnum;
+            $productReview->save();
+        }
+
+        return $productReview;
+    }
 }

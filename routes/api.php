@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\Order\IndexOrder;
 use App\Http\Controllers\Admin\Order\ShowOrder;
 use App\Http\Controllers\Admin\Order\UpdateOrder;
 use App\Http\Controllers\Admin\Product\Assign\StoreProductDetail;
+use App\Http\Controllers\Admin\ProductReview\ChangeStatusProductReview;
 use App\Http\Controllers\Admin\ProductReview\DestroyProductReview;
 use App\Http\Controllers\Admin\ProductReview\IndexProductReview;
 use App\Http\Controllers\Admin\ProductReview\ShowProductReview;
@@ -50,7 +51,7 @@ Route::namespace('App\Http\Controllers\Admin')
 
 Route::namespace('App\Http\Controllers\Admin')
     ->middleware('auth:api')
-    ->group(function () {
+    ->group(callback: function () {
 
         Route::namespace('Media')->group(function () {
             Route::post('media', 'StoreMedia');
@@ -79,10 +80,11 @@ Route::namespace('App\Http\Controllers\Admin')
             Route::post('/products/assign', StoreProductDetail::class);
         });
 
-        Route::namespace('ProductReview')->group(function () {
+        Route::namespace('ProductReview')->group(callback: function () {
             Route::get('products/{product}/product-reviews', IndexProductReview::class);
             Route::get('product-reviews/{productReview}', ShowProductReview::class);
             Route::delete('product-reviews/{productReview}', DestroyProductReview::class);
+            Route::patch('product-reviews/{productReview}/change-status', ChangeStatusProductReview::class);
         });
 
         Route::namespace('Comment')->group(callback: function () {
