@@ -33,6 +33,7 @@ use App\Http\Controllers\User\ProductReview\IndexDefaultReviewPoint;
 use App\Http\Controllers\User\ProductReview\IndexProductReview as UserIndexProductReview;
 use App\Http\Controllers\User\ProductReview\StoreProductReview;
 use App\Http\Controllers\User\ProductReview\UpdateProductReview;
+use App\Http\Controllers\User\User\ShowUser;
 use App\Http\Controllers\User\User\UpdateUser;
 use Illuminate\Support\Facades\Route;
 
@@ -139,6 +140,7 @@ Route::namespace('App\Http\Controllers\User')
         });
 
         Route::namespace('User')->group(callback: function () {
+            Route::get('me', ShowUser::class);
             Route::patch('my-profile', UpdateUser::class);
         });
 
