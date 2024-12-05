@@ -8,7 +8,7 @@ use App\Http\Resources\ProductDetailResource;
 use App\Utilities\ApiResponse;
 use Illuminate\Http\JsonResponse;
 
-class ProductDetail extends Controller
+class MyProductDetail extends Controller
 {
     public function __invoke($productDetailId): JsonResponse
     {

@@ -25,8 +25,9 @@ use App\Http\Controllers\User\Cart\DestroyCart;
 use App\Http\Controllers\User\Cart\IndexCart as UserIndexCart;
 use App\Http\Controllers\User\ContactUS\IndexAgents;
 use App\Http\Controllers\User\ContactUS\IndexContactUS;
+use App\Http\Controllers\User\Product\IndexProduct;
 use App\Http\Controllers\User\Product\MyProduct as UserMyProduct;
-use App\Http\Controllers\User\Product\ProductDetail;
+use App\Http\Controllers\User\Product\MyProductDetail;
 use App\Http\Controllers\User\ProductReview\DestroyProductReview as UserDestroyProductReview;
 use App\Http\Controllers\User\ProductReview\IndexDefaultReviewPoint;
 use App\Http\Controllers\User\ProductReview\IndexProductReview as UserIndexProductReview;
@@ -132,7 +133,9 @@ Route::namespace('App\Http\Controllers\User')
 
         Route::namespace('Product')->group(callback: function () {
             Route::get('my-products', UserMyProduct::class);
-            Route::get('my-product/details/{productDetail}', ProductDetail::class);
+            Route::get('my-product/details/{productDetail}', MyProductDetail::class);
+
+            Route::get('products', IndexProduct::class);
         });
 
         Route::namespace('User')->group(callback: function () {
