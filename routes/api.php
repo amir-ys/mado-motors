@@ -23,6 +23,7 @@ use App\Http\Controllers\User\Address\StoreAddress;
 use App\Http\Controllers\User\Address\UpdateAddress;
 use App\Http\Controllers\User\Cart\DestroyCart;
 use App\Http\Controllers\User\Cart\IndexCart as UserIndexCart;
+use App\Http\Controllers\User\Cart\StoreCart;
 use App\Http\Controllers\User\ContactUS\IndexAgents;
 use App\Http\Controllers\User\ContactUS\IndexContactUS;
 use App\Http\Controllers\User\Product\IndexProduct;
@@ -161,5 +162,6 @@ Route::namespace('App\Http\Controllers\User')
         Route::namespace('Cart')->group(callback: function () {
             Route::get('/carts', UserIndexCart::class);
             Route::delete('/carts/{cart}', DestroyCart::class);
+            Route::post('/carts', StoreCart::class);
         });
     });

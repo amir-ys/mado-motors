@@ -14,6 +14,7 @@ use App\Contracts\Repositories\ProductCategoryRepositoryInterface;
 use App\Contracts\Repositories\ProductDetailRepositoryInterface;
 use App\Contracts\Repositories\ProductRepositoryInterface;
 use App\Contracts\Repositories\ProductReviewRepositoryInterface;
+use App\Contracts\Repositories\ProductVariantRepositoryInterface;
 use App\Contracts\Repositories\ReviewPointRepositoryInterface;
 use App\Contracts\Repositories\SettingRepositoryInterface;
 use App\Contracts\Repositories\UserAddressRepositoryInterface;
@@ -30,6 +31,7 @@ use App\Repositories\ProductCategoryRepository;
 use App\Repositories\ProductDetailRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\ProductReviewRepository;
+use App\Repositories\ProductVariantRepository;
 use App\Repositories\ReviewPointRepository;
 use App\Repositories\SettingRepository;
 use App\Repositories\UserAddressRepository;
@@ -55,5 +57,6 @@ class RepositoryServiceProvider extends ServiceProvider
         ProductDetailRepositoryInterface::class => ProductDetailRepository::class,
         AgentRepositoryInterface::class => AgentRepository::class,
         SettingRepositoryInterface::class => SettingRepository::class,
+        ProductVariantRepositoryInterface::class => ProductVariantRepository::class,
     ];
 }
