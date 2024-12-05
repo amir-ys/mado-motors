@@ -28,6 +28,7 @@ use App\Http\Controllers\User\ContactUS\IndexContactUS;
 use App\Http\Controllers\User\Product\IndexProduct;
 use App\Http\Controllers\User\Product\MyProduct as UserMyProduct;
 use App\Http\Controllers\User\Product\MyProductDetail;
+use App\Http\Controllers\User\Product\ShowProduct;
 use App\Http\Controllers\User\ProductReview\DestroyProductReview as UserDestroyProductReview;
 use App\Http\Controllers\User\ProductReview\IndexDefaultReviewPoint;
 use App\Http\Controllers\User\ProductReview\IndexProductReview as UserIndexProductReview;
@@ -137,6 +138,7 @@ Route::namespace('App\Http\Controllers\User')
             Route::get('my-product/details/{productDetail}', MyProductDetail::class);
 
             Route::get('products', IndexProduct::class);
+            Route::get('products/{product}', ShowProduct::class);
         });
 
         Route::namespace('User')->group(callback: function () {
