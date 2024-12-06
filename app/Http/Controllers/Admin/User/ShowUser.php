@@ -15,7 +15,9 @@ class ShowUser extends Controller
     {
         return ApiResponse::success(
             UserResource::make(
-                app(UserRepositoryInterface::class)->find($id)
+                app(UserRepositoryInterface::class)
+                    ->with(['mainAddress' , 'roles'])
+                    ->find($id)
             )
         );
     }

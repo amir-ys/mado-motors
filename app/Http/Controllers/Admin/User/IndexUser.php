@@ -15,7 +15,7 @@ class IndexUser extends Controller
         return ApiResponse::success(
             UserResource::collection(
                 app(UserRepositoryInterface::class)
-                    ->with(['mainAddress'])
+                    ->with(['mainAddress' , 'roles'])
                     ->index()
             )
         );
