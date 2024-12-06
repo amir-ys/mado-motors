@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Enums\UserRoleEnum;
+use App\Models\Role;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -41,5 +43,16 @@ class UserFactory extends Factory
         return $this->state(fn(array $attributes) => [
             'email_verified_at' => null,
         ]);
+    }
+
+    public function configure()
+    {
+        return $this->afterCreating(function ($user) {
+            foreach (UserRoleEnum::cases() as $enum) {
+                Role::query()->firstOrCreate(['name' => $enum->value]);
+            }
+
+            $user->assignRole(UserRoleEnum::USER->value);
+        });
     }
 }

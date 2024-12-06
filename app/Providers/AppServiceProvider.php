@@ -4,12 +4,14 @@ namespace App\Providers;
 
 use App\Contracts\Services\ContactUSServiceInterface;
 use App\Contracts\Services\SettingServiceInterface;
+use App\Enums\UserRoleEnum;
 use App\Services\ContactUSService;
 use App\Services\SettingService;
 use App\Utilities\CustomPaginator;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -25,6 +27,10 @@ class AppServiceProvider extends ServiceProvider
         $this->routeHandler();
         $this->bindServices();
         $this->bindFacades();
+
+        Gate::before(function ($user, $ability) {
+            return $user->hasRole(UserRoleEnum::ADMIN->value) ? true : null;
+        });
     }
 
     /**

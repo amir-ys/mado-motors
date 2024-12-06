@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Contracts\Repositories\UserRepositoryInterface;
+use App\Enums\UserRoleEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Utilities\ApiResponse;
@@ -27,6 +28,7 @@ class RegisterController extends Controller
         $user = $this->userRepository->create(
             $data
         );
+        $user->assignRole(UserRoleEnum::USER->value);
 
         $response = Http::asForm()->post(config('app.url') . '/oauth/token', [
             'grant_type' => 'password',

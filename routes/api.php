@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\UserRoleEnum;
 use App\Http\Controllers\Admin\Cart\IndexCart;
 use App\Http\Controllers\Admin\Cart\IndexCartItem;
 use App\Http\Controllers\Admin\Comment\ChangeCommentStatus;
@@ -53,7 +54,7 @@ Route::namespace('App\Http\Controllers\Admin')
     });
 
 Route::namespace('App\Http\Controllers\Admin')
-    ->middleware('auth:api')
+    ->middleware(['auth:api', "role:" . UserRoleEnum::ADMIN->value])
     ->group(callback: function () {
 
         Route::namespace('Media')->group(function () {
@@ -116,9 +117,9 @@ Route::namespace('App\Http\Controllers\Admin')
 
 
 Route::namespace('App\Http\Controllers\Agent')
-    ->middleware('auth:api')
+    ->middleware(['auth:api', "role:" . UserRoleEnum::AGENT->value . "," . UserRoleEnum::USER->value])
     ->prefix('agent')
-    ->group(function () {
+    ->group(callback: function () {
 
         Route::namespace('Product')->group(callback: function () {
             Route::get('my-products', MyProduct::class);
@@ -128,7 +129,12 @@ Route::namespace('App\Http\Controllers\Agent')
 
 
 Route::namespace('App\Http\Controllers\User')
-    ->middleware('auth:api')
+    ->middleware(['auth:api',
+        "role:" .
+        UserRoleEnum::USER->value . "," .
+        UserRoleEnum::ADMIN->value . "," .
+        UserRoleEnum::AGENT->value
+    ])
     ->prefix('user')
     ->group(callback: function () {
 

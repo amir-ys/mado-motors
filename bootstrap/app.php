@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\CheckUserRoleMiddleware;
 use App\Utilities\ApiResponse;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Application;
@@ -16,13 +17,14 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->alias([
+            'role' => CheckUserRoleMiddleware::class
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         $exceptions->shouldRenderJsonWhen(function (Request $request, Throwable $e) {
             return true;
         });
-
         $exceptions->render(function (NotFoundHttpException $e, Request $request) {
             if ($e->getPrevious() instanceof ModelNotFoundException) {
                 return ApiResponse::notFound('The resource you are looking for does not exist.');

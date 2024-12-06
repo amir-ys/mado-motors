@@ -14,6 +14,11 @@ class MyProduct extends Controller
     public function __invoke(AgentRepositoryInterface $agentRepository): JsonResponse
     {
         $agent = $agentRepository->findByUserId(auth()->id());
+
+        if (!$agent) {
+            return ApiResponse::error('agent not found');
+        }
+
         return ApiResponse::success(
             ProductDetailResource::collection(
                 app(ProductDetailRepositoryInterface::class)->getByAgentId(
