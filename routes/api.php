@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\ProductReview\ChangeStatusProductReview;
 use App\Http\Controllers\Admin\ProductReview\DestroyProductReview;
 use App\Http\Controllers\Admin\ProductReview\IndexProductReview;
 use App\Http\Controllers\Admin\ProductReview\ShowProductReview;
+use App\Http\Controllers\Admin\User\SendSmsToUser;
 use App\Http\Controllers\Agent\Product\MyProduct;
 use App\Http\Controllers\Agent\Product\TransferProduct;
 use App\Http\Controllers\Auth\LoginController;
@@ -63,6 +64,7 @@ Route::namespace('App\Http\Controllers\Admin')
 
         Route::namespace('User')->group(function () {
             Route::handler('users');
+            Route::post('users/{user}/send-sms', SendSmsToUser::class);
         });
 
         Route::namespace('ProductCategory')->group(function () {
