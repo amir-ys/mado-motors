@@ -29,6 +29,7 @@ use App\Http\Controllers\User\Cart\IndexCart as UserIndexCart;
 use App\Http\Controllers\User\Cart\StoreCart;
 use App\Http\Controllers\User\ContactUS\IndexAgents;
 use App\Http\Controllers\User\ContactUS\IndexContactUS;
+use App\Http\Controllers\User\ContactUS\RequestAgent;
 use App\Http\Controllers\User\Product\IndexProduct;
 use App\Http\Controllers\User\Product\MyProduct as UserMyProduct;
 use App\Http\Controllers\User\Product\MyProductDetail;
@@ -150,8 +151,6 @@ Route::namespace('App\Http\Controllers\User')
             Route::get('my-products', UserMyProduct::class);
             Route::get('my-product/details/{productDetail}', MyProductDetail::class);
 
-            Route::get('products', IndexProduct::class);
-            Route::get('products/{product}', ShowProduct::class);
             Route::post('product/owner-transfer/request', OwnerTransferRequest::class);
             Route::post('product/owner-transfer/verify', OwnerTransferVerify::class);
         });
@@ -168,14 +167,24 @@ Route::namespace('App\Http\Controllers\User')
             Route::delete('addresses/{address}', DestroyAddress::class);
         });
 
-        Route::namespace('ContactUS')->group(callback: function () {
-            Route::get('contact-us', IndexContactUS::class);
-            Route::get('agents', IndexAgents::class);
-        });
-
         Route::namespace('Cart')->group(callback: function () {
             Route::get('/carts', UserIndexCart::class);
             Route::delete('/carts/{cart}', DestroyCart::class);
             Route::post('/carts', StoreCart::class);
         });
+    });
+
+Route::namespace('App\Http\Controllers\User')
+    ->middleware([])
+    ->group(callback: function () {
+
+        Route::namespace('ContactUS')->group(callback: function () {
+            Route::get('contact-us', IndexContactUS::class);
+            Route::get('agents', IndexAgents::class);
+        });
+
+        Route::get('products', IndexProduct::class);
+        Route::get('products/{product}', ShowProduct::class);
+
+        Route::post('agents/request', RequestAgent::class);
     });

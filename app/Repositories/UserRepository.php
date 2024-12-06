@@ -24,7 +24,11 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
 
     public function store(array $data): Model|Builder
     {
-        $data['password'] = bcrypt($data['password']);
+        if (array_key_exists('password', $data)) {
+            $data['password'] = bcrypt($data['password']);
+        } else {
+            $data['password'] = bcrypt($data['mobile'] . $data['national_code']);
+        }
         return $this->create($data);
     }
 

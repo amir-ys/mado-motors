@@ -12,6 +12,14 @@ class Agent extends Model
 {
     use  BasicModel, SearchableTrait, HasFactory, SoftDeletes;
 
+    protected $fillable = [
+        'name',
+        'code',
+        'user_id',
+        'address_id',
+        'description',
+    ];
+
     public static function getTableName(): string
     {
         return 'agents';
@@ -25,5 +33,15 @@ class Agent extends Model
     public function address(): BelongsTo
     {
         return $this->belongsTo(UserAddress::class);
+    }
+
+    public static function generateUniqueCode()
+    {
+        $code = random_int(100, 999);
+        if (self::query()->where('code', $code)->exists()) {
+            self::generateUniqueCode();
+        }
+
+        return $code;
     }
 }

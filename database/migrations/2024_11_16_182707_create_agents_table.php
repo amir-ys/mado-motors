@@ -12,10 +12,11 @@ return new class extends Migration {
     {
         Schema::create('agents', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 190);
+            $table->string('name', 190)->nullable();
             $table->string('code', 50);
             $table->foreignId('user_id');
             $table->foreignId('address_id');
+            $table->text('description')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
