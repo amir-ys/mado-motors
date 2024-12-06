@@ -24,7 +24,8 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
                 "variants",
                 "variants.attributes",
                 "variants.attributes.attribute",
-                "relatedProducts"
+                "relatedProducts",
+                "media",
             ])
             ->filtered()
             ->paginate();
@@ -38,7 +39,8 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
             "variants",
             "variants.attributes",
             "variants.attributes.attribute",
-            "relatedProducts"
+            "relatedProducts",
+            "media",
         ]);
         return $product;
     }

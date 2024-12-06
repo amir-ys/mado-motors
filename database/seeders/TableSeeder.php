@@ -16,7 +16,6 @@ use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductDetail;
 use App\Models\ProductReview;
-use App\Models\ProductReviewPoint;
 use App\Models\ProductVariant;
 use App\Models\ReviewPoint;
 use App\Models\Setting;
@@ -24,6 +23,7 @@ use App\Models\User;
 use App\Models\UserAddress;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 
 class TableSeeder extends Seeder
@@ -54,6 +54,7 @@ class TableSeeder extends Seeder
         ProductVariant::factory(20)->create();
 
         $this->insertSetting();
+        $this->insertMedia();
     }
 
     private function insertSetting(): void
@@ -76,5 +77,15 @@ class TableSeeder extends Seeder
             ['key' => 'contact_us_latitude', 'value' => '37.7749', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'contact_us_longitude', 'value' => '-122.4194', 'created_at' => now(), 'updated_at' => now()],
         ]);
+    }
+
+    private function insertMedia()
+    {
+        DB::statement("INSERT INTO `media`
+    ( `uuid`, `model_type`, `model_id`, `collection_name`, `name`, `file_name`,
+     `mime_type`, `disk`, `conversions_disk`, `size`, `manipulations`, `custom_properties`,
+     `responsive_images`, `order_column`, `created_at`, `updated_at`, `generated_conversions`
+     )
+VALUES ( '" . Str::random(20) . "', 'App\\\Models\\\Product', '1', 'temp_medias', 'pexels-pixabay-60597', 'pexels-pixabay-60597.jpg', 'image/jpeg', 'media', 'media', '331466', '[]', '[]', '[]', 1, '2024-11-08 02:13:50', '2024-11-08 02:18:34', '[]');");
     }
 }

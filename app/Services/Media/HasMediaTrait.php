@@ -10,7 +10,8 @@ trait HasMediaTrait
 
     public function main_image()
     {
-        return $this->morphOne(Media::class, 'model')->where('collection_name', 'main_image');
+        return $this->morphOne(Media::class, 'model')
+            ->where('collection_name', 'main_image');
     }
 
     public static function isValidMediaCollection(string $collectionName): bool
