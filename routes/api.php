@@ -30,6 +30,8 @@ use App\Http\Controllers\User\ContactUS\IndexContactUS;
 use App\Http\Controllers\User\Product\IndexProduct;
 use App\Http\Controllers\User\Product\MyProduct as UserMyProduct;
 use App\Http\Controllers\User\Product\MyProductDetail;
+use App\Http\Controllers\User\Product\OwnerTransferRequest;
+use App\Http\Controllers\User\Product\OwnerTransferVerify;
 use App\Http\Controllers\User\Product\ShowProduct;
 use App\Http\Controllers\User\ProductReview\DestroyProductReview as UserDestroyProductReview;
 use App\Http\Controllers\User\ProductReview\IndexDefaultReviewPoint;
@@ -142,6 +144,8 @@ Route::namespace('App\Http\Controllers\User')
 
             Route::get('products', IndexProduct::class);
             Route::get('products/{product}', ShowProduct::class);
+            Route::post('product/owner-transfer/request', OwnerTransferRequest::class);
+            Route::post('product/owner-transfer/verify', OwnerTransferVerify::class);
         });
 
         Route::namespace('User')->group(callback: function () {
